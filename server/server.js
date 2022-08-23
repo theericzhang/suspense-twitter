@@ -1,7 +1,17 @@
 import { TwitterApi } from "twitter-api-v2";
 import "dotenv/config";
+import express from 'express';
 
-console.log("server started");
+const app = express();
+const port = 5000;
+
+app.get("/", (req, res) => {
+    res.send("Hello World!");
+});
+
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`);
+});
 
 const clientMain = new TwitterApi(process.env.BEARER_TOKEN);
 
@@ -41,7 +51,7 @@ const myTimeline = await roClient.v2.userTimeline(myTwitterId, {
 let i = 0;
 for await (const tweet of myTimeline) {
     console.log("the tweet", tweet);
-    // returns 5 tweet objects from reverse chron order. 
+    // returns 5 tweet objects from reverse chron order.
     // if the tweets include a referenced tweet (e.g. a retweet)
     // i need to somehow indicate that those tweets were retweeted.
     // if tweet.referenced_tweets != null {include logo rendering} (from the client side, at least)
