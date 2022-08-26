@@ -1,15 +1,26 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import AppFrame from "./components/AppFrame";
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [ tweetData, setTweetData ] = useState({});
+    
+    async function fetchTweetData() {
+        const res = await fetch('http://localhost:5000');
+        const data = await res.json();
+        setTweetData(data)
+    }
 
-  return (
-    <div className="App">
-      <h2 className="">Your mom</h2>
-    </div>
-  )
+    useEffect(() => {
+        fetchTweetData();
+    }, [])
+    
+    return (
+        <div className="App">
+            <AppFrame />
+        </div>
+    );
 }
 
-export default App
+export default App;
