@@ -7,9 +7,10 @@ function App() {
     const [ tweetData, setTweetData ] = useState({});
     
     async function fetchTweetData() {
-        const res = await fetch('http://localhost:5000');
+        const res = await fetch('http://localhost:5000/tweets');
         const data = await res.json();
         setTweetData(data)
+        console.log(data)
     }
 
     useEffect(() => {

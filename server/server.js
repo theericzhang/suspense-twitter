@@ -1,9 +1,12 @@
 import { TwitterApi } from "twitter-api-v2";
 import "dotenv/config";
 import express from 'express';
+import cors from 'cors';
 
 const app = express();
 const port = 5000;
+
+app.use(cors());
 
 app.get("/", (req, res) => {
     res.send("Hello World!");
@@ -49,18 +52,32 @@ const myTimeline = await roClient.v2.userTimeline(myTwitterId, {
 
 // console.log("logging data: ", myTimeline.data);
 let i = 0;
+let myTimelineTweetData = []
 for await (const tweet of myTimeline) {
-    console.log("the tweet", tweet);
+    myTimelineTweetData = [ ...myTimelineTweetData, tweet ];
     // returns 5 tweet objects from reverse chron order.
     // if the tweets include a referenced tweet (e.g. a retweet)
     // i need to somehow indicate that those tweets were retweeted.
     // if tweet.referenced_tweets != null {include logo rendering} (from the client side, at least)
 
     const medias = myTimeline.includes.medias(tweet);
-    console.log("medias is: ", medias);
+    // console.log("medias is: ", medias);
     i++;
-    if (i === 5) break;
+    if (i === 5) {
+        // console.log("the tweet array", myTimelineTweetData);
+        break;
+    }
 }
+
+const myTimelineTweetDataObject = {
+    tweetsDataArray: myTimelineTweetData
+}
+
+app.get('/tweets', (_, res) => {
+    res.json({ ok: true, myTimelineTweetDataObject})
+})
+
+console.log('the tweet object', myTimelineTweetDataObject);
 
 //   for await (const tweet of myTimeline) {
 //     console.log("the tweet: ", tweet);
