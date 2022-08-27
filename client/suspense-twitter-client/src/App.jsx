@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect, createContext, Suspense } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import AppFrame from "./components/AppFrame";
@@ -21,11 +21,11 @@ function App() {
     
     return (
         <div className="App">
-            {tweetData !== {} && 
+            {/* {tweetData !== {} &&  */}
                 <TweetDataContext.Provider value={tweetData}>
                     <AppFrame />
                 </TweetDataContext.Provider>
-            }
+            {/* } */}
         </div>
     );
 }
