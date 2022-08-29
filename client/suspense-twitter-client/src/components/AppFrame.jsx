@@ -1,10 +1,13 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Wrapper from "./Wrapper";
 
 export default function AppFrame() {
+    const WrapperLazy = React.lazy(() => import('./Wrapper'));
     return (
         <div className="app-frame">
-            <Wrapper />
+            <Suspense fallback={<p>Loading....</p>}>
+                <WrapperLazy />
+            </Suspense>
         </div>
     )
 }

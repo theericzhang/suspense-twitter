@@ -6,6 +6,7 @@ import cors from 'cors';
 const app = express();
 const port = 5000;
 
+// use cors on our express instance to allow for data fetching from client-side
 app.use(cors());
 
 app.get("/", (req, res) => {
@@ -16,27 +17,25 @@ app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });
 
+// create a main Twitter client with our Bearer Token
 const clientMain = new TwitterApi(process.env.BEARER_TOKEN);
 
-// const clientMain = new TwitterApi(
-//     {
-//         clientId : process.env.CLIENT_ID,
-//         clientSecret : process.env.CLIENT_SECRET
-//     }
-// )
+// set this client to read-only since we are only pulling information from the API
 const roClient = clientMain.readOnly;
 
-// const myTimeline = await roClient.v1.homeTimeline();
-// console.log(myTimeline.tweets.length, 'fetched.');
-
+// identify a user to pull data from (me)
 const user = await roClient.v2.usersByUsernames("anericzhang");
-// console.log("success", user);
-
 const myTwitterId = user?.data[0]?.id;
 console.log(myTwitterId);
 
-// const myTimeline = await roClient.v2.homeTimeline(myTwitterId)
+// GET user information. Returns Profile Image, Username, Display Name, and ID
+const myUserProfileData = await roClient.v2.users(myTwitterId, {
+    "user.fields": ["profile_image_url"]
+});
 
+console.log(myUserProfileData);
+
+// GET user Timeline - set maximum results to 5 tweets, with expansions of media information and referenced tweets.
 const myTimeline = await roClient.v2.userTimeline(myTwitterId, {
     max_results: 5,
     expansions: [
