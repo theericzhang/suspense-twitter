@@ -43,7 +43,12 @@
 }
 
 .App {
-    
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* change height and width properties before final deployment? */
 }
 
 .app-frame {
@@ -58,6 +63,7 @@
     /* height: 900px;  */
     border-radius: 13px;
     border: 1px #F0F3F4 solid;
+    overflow: hidden;
     /* remove height after populating with content */
     display: flex;
     flex-direction: column;
