@@ -58,15 +58,22 @@
     /* height: 900px;  */
     border-radius: 13px;
     border: 1px #F0F3F4 solid;
-    padding: 0 16px;
     /* remove height after populating with content */
+    display: flex;
+    flex-direction: column;
 }
 
 .tweet-wrapper {
     display: flex;
     flex-direction: row;
-    width: 600px;
-    margin: 12px 0;
+    padding: 12px 16px;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
+    background-color: #FFF;
+}
+
+.tweet-wrapper:hover {
+    background-color: #F0F3F4;
 }
 
 .tweet-avatar-column {
@@ -141,16 +148,59 @@
     color: #58636F;
     margin: 2px 0;
     margin-left: 12px;
+    transition: color cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 0.5s;
 }
 
 .tweet-action-button {
     padding: 0;
     margin: 0;
     border: none;
-    background-color: #fff;
+    background-color: transparent;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
+}
+
+.tweet-action-button:hover #reply {
+    fill: #479BE9;
+}
+
+.tweet-action-button:hover ~ #replyCounter{
+    color: #479BE9;
+}
+
+.tweet-action-button:hover #retweet, #retweetCounter{
+    fill: #53B681;
+}
+
+.tweet-action-button:hover ~ #retweetCounter{
+    color: #53B681;
+}
+
+.tweet-action-button:hover #react, #reactCounter{
+    fill: #E53A7F;
+}
+
+.tweet-action-button:hover ~ #reactCounter{
+    color: #E53A7F;
+}
+
+.tweet-action-button:hover #share{
+    fill: #479BE9;
 }
 
 .tweet-actions-icon {
     width: 20px;
     height: 20px;
+    fill:#6E767D;
+    transition: fill cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 0.5s;
+}
+
+.tweet-divider {
+    margin: 0;
+    border-bottom: none;
+    border-top: 1px #F0F3F4 solid;
+    border-left: none;
+    border-right: none;
 }
