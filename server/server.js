@@ -32,8 +32,10 @@ console.log(myTwitterId);
 const myUserProfileData = await roClient.v2.users(myTwitterId, {
     "user.fields": ["profile_image_url"]
 });
-
 console.log(myUserProfileData);
+
+const myUserAvatarLink = myUserProfileData?.data[0]?.profile_image_url;
+console.log(myUserAvatarLink);
 
 // GET user Timeline - set maximum results to 5 tweets, with expansions of media information and referenced tweets.
 const myTimeline = await roClient.v2.userTimeline(myTwitterId, {
@@ -69,7 +71,8 @@ for await (const tweet of myTimeline) {
 }
 
 const myTimelineTweetDataObject = {
-    tweetsDataArray: myTimelineTweetData
+    tweetsDataArray: myTimelineTweetData,
+    myUserProfileData: myUserProfileData
 }
 
 app.get('/tweets', (_, res) => {
