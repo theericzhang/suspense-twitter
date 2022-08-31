@@ -17,13 +17,14 @@ export default function Wrapper() {
 
     const tweetDataArray = tweetData?.myTimelineTweetDataObject?.tweetsDataArray;
     const myUserProfileData = tweetData?.myTimelineTweetDataObject?.myUserProfileData;
-    const tweetComponentArray = tweetDataArray?.map((tweetData, index) => {
+    const tweetComponentArray = tweetDataArray?.map((tweet, index) => {
         return (
-            <Tweet text={tweetData.text}
+            <Tweet text={tweet?.text}
                    displayName={myUserProfileData?.data[0]?.name}
                    username={myUserProfileData?.data[0]?.username}
-                   profile_image_url={myUserProfileData?.data[0]?.profile_image_url} 
-                   key={tweetData + index} 
+                   profile_image_url={myUserProfileData?.data[0]?.profile_image_url}
+                   public_metrics={tweet?.public_metrics} 
+                   key={tweet + index} 
                    isLastTweet={index === tweetDataArray?.length - 1}
             />
         )

@@ -145,6 +145,7 @@
 .tweet-action-wrapper {
     display: flex;
     flex-direction: row;
+    column-gap: 12px;
 }
 
 .tweet-action-counter {
@@ -153,9 +154,9 @@
     font-weight: 400;
     color: #58636F;
     margin: 2px 0;
-    margin-left: 12px;
     transition: color cubic-bezier(0.075, 0.82, 0.165, 1);
     transition-duration: 0.5s;
+    width: 32px;
 }
 
 .tweet-action-button {

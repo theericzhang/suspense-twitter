@@ -45,6 +45,7 @@ const myTimeline = await roClient.v2.userTimeline(myTwitterId, {
         "attachments.poll_ids",
         "referenced_tweets.id",
     ],
+    "tweet.fields": ["public_metrics"],
     "media.fields": ["url"],
 });
 
