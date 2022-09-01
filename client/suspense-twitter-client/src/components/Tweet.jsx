@@ -7,34 +7,55 @@ export default function Tweet( { text,
                                  public_metrics,
                                  time_created,
                                  currentTimeSinceEpochInms,
+                                 isVerified,
                                  isLastTweet
                                 } ) 
 {
 
+    // by parsing the time_created time, we will be able to see how many ms have elapsed since the unix epoch
+    // subtracting this value from currentTimeSinceEpochInms allows us to see in ms how long it has been.
+    // with this difference in ms, we can see if it's been longer than a minute, hour, day, or year. This way we can display the appropriate unit for time elapsed.
     const timeCreatedInms = Date.parse(time_created);
+
+    // create a new Date object so that we can perform getHours, getMinutes, getSeconds, etc.
+    // Using those values, we will be able to calculate the time difference between the current time and the time of tweet
     const timeCreatedObject = new Date(time_created);
-    // console.log(timeCreatedInms);
+    const timeCreatedObjectMonth = timeCreatedObject.getMonth();
+    
+    // converting time units to milliseconds to compare with the difference btwn currentTimeSinceEpochInms and timeCreatedInms
+    // for example, if we see that the difference is greater than a minute, we know that its value is at least a minute - meaning we can possibly display a 'm' unit for the tweetTimePlaceholder.
     const msInADay = 86400000;
     const msInAnHour = 3600000;
     const msInAMinute = 60000;
-    console.log(currentTimeSinceEpochInms - timeCreatedInms);
+    const msInASecond = 1000;
 
     const isOlderThanOneDay = currentTimeSinceEpochInms - timeCreatedInms > msInADay;
     const isOlderThanOneHour = currentTimeSinceEpochInms - timeCreatedInms > msInAnHour;
     const isOlderThanOneMinute = currentTimeSinceEpochInms - timeCreatedInms > msInAMinute;
-    console.log("is it older than a day?: ", isOlderThanOneDay);
-    console.log("is it older than an hour?: ", isOlderThanOneHour);
+    const isOlderThanOneSecond = currentTimeSinceEpochInms - timeCreatedInms > msInASecond;
+
+    const monthToString = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+
+    let tweetTimePlaceholder = "";
     
     if ( isOlderThanOneDay ) {
-        // display the date
-        console.log("how u do this one ");
+        // display the date (month, day)
+        // console.log("how u do this one ");
+        // console.log("Expected longer than a day old: " + timeCreatedObject.getMonth() + " " + timeCreatedObject.getDate());
+        tweetTimePlaceholder = monthToString[timeCreatedObjectMonth] + " " + timeCreatedObject.getDate();
     } else if ( !isOlderThanOneDay && isOlderThanOneHour ) {
         // display hours + 'h' 
-        console.log("hours: ", timeCreatedObject.getHours());
+        // console.log("hours: ", Math.floor((currentTimeSinceEpochInms - timeCreatedInms) / msInAnHour));
+        tweetTimePlaceholder = Math.floor((currentTimeSinceEpochInms - timeCreatedInms) / msInAnHour) + "h";
     } else if ( !isOlderThanOneDay && !isOlderThanOneHour && isOlderThanOneMinute ) {
-        // display mminutes + 'm'
-        console.log("minutes: ", timeCreatedObject.getMinutes());
-    } 
+        // display minutes + 'm'
+        // console.log("minutes: ", Math.floor((currentTimeSinceEpochInms - timeCreatedInms) / msInAMinute));
+        tweetTimePlaceholder = Math.floor((currentTimeSinceEpochInms - timeCreatedInms) / msInAMinute) + "m";
+    } else if ( !isOlderThanOneDay && !isOlderThanOneHour && !isOlderThanOneMinute && isOlderThanOneSecond ) {
+        // display seconds + "s"
+        // console.log("seconds: ", Math.floor((currentTimeSinceEpochInms - timeCreatedInms) / msInASecond));
+        tweetTimePlaceholder = Math.floor((currentTimeSinceEpochInms - timeCreatedInms) / msInASecond) + "s";
+    } else {}
 
     return (
         <>
@@ -45,11 +66,13 @@ export default function Tweet( { text,
                 <div className="tweet-body">
                     <div className="tweet-meta-info">
                         <h4 className="display-name">{displayName}</h4>
-                        <svg viewBox="0 0 24 24" className="verified-account-logo" fill="rgb(29, 155, 240)">
-                            <path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .494.083.964.237 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z"></path>
-                        </svg>
+                        {isVerified && <svg viewBox="0 0 24 24" className="verified-account-logo" fill="rgb(29, 155, 240)">
+                                           <path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .494.083.964.237 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z"></path>
+                                       </svg>
+                        }
                         <h4 className="username">@{username}</h4>
                         <h4 className="interpunct">·</h4>
+                        <h4 className="tweet-time">{tweetTimePlaceholder}</h4>
                     </div>
                     <p className="tweet-body-text">{text}</p>
                     {/* determine if there is media to be displayed */}

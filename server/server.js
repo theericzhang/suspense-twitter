@@ -30,7 +30,7 @@ console.log(myTwitterId);
 
 // GET user information. Returns Profile Image, Username, Display Name, and ID
 const myUserProfileData = await roClient.v2.users(myTwitterId, {
-    "user.fields": ["profile_image_url"]
+    "user.fields": ["profile_image_url", "verified"]
 });
 console.log(myUserProfileData);
 

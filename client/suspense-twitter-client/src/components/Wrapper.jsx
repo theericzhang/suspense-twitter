@@ -29,6 +29,7 @@ export default function Wrapper() {
                    public_metrics={tweet?.public_metrics} 
                    time_created={tweet?.created_at}
                    currentTimeSinceEpochInms={currentTimeSinceEpochInms}
+                   isVerified={myUserProfileData?.data[0]?.verified}
                    isLastTweet={index === tweetDataArray?.length - 1}
                    key={tweet + index} 
             />

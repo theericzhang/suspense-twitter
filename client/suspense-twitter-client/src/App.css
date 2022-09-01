@@ -173,6 +173,18 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.tweet-time {
+    font-family: TwitterChirp;
+    font-weight: 400;
+    font-size: 15px;
+    color: #536471;
+    margin: 0;
+    margin-left: 5px;
+    letter-spacing: -0.2px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 .tweet-body-text {
     font-family: TwitterChirp;
     font-weight: 400;
