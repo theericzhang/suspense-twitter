@@ -24,7 +24,7 @@ const clientMain = new TwitterApi(process.env.BEARER_TOKEN);
 const roClient = clientMain.readOnly;
 
 // identify a user to pull data from (me)
-const user = await roClient.v2.usersByUsernames("anericzhang");
+const user = await roClient.v2.usersByUsernames("POTUS");
 const myTwitterId = user?.data[0]?.id;
 console.log(myTwitterId);
 
@@ -45,7 +45,7 @@ const myTimeline = await roClient.v2.userTimeline(myTwitterId, {
         "attachments.poll_ids",
         "referenced_tweets.id",
     ],
-    "tweet.fields": ["public_metrics"],
+    "tweet.fields": ["public_metrics", "created_at"],
     "media.fields": ["url"],
 });
 

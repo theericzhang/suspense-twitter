@@ -42,6 +42,34 @@
     src: url("./fonts/SF-Pro-Text-Bold.otf");
 }
 
+@font-face {
+    font-family: TwitterChirp;
+    font-style: normal;
+    font-weight: 400;
+    src: url("./fonts/chirp-regular-web.woff");
+}
+
+@font-face {
+    font-family: TwitterChirp;
+    font-style: normal;
+    font-weight: 500;
+    src: url("./fonts/chirp-medium-web.woff");
+}
+
+@font-face {
+    font-family: TwitterChirp;
+    font-style: normal;
+    font-weight: 700;
+    src: url("./fonts/chirp-bold-web.woff");
+}
+
+@font-face {
+    font-family: TwitterChirp;
+    font-style: normal;
+    font-weight: 800;
+    src: url("./fonts/chirp-heavy-web.woff");
+}
+
 .App {
     height: 100vh;
     width: 100vw;
@@ -72,7 +100,7 @@
 .tweet-wrapper {
     display: flex;
     flex-direction: row;
-    padding: 12px 16px;
+    padding: 14px 17px;
     transition: cubic-bezier(0.075, 0.82, 0.165, 1);
     transition-duration: 1s;
     background-color: #FFF;
@@ -83,7 +111,7 @@
 }
 
 .tweet-avatar-column {
-    width: calc(76px - 16px);
+    width: calc(76px - 12px);
     display: flex;
 }
 
@@ -103,32 +131,56 @@
 .tweet-meta-info {
     display: flex;
     flex-direction: row;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
+    align-items: center;
 }
 
 .display-name {
-    font-family: SF-Pro-Text;
+    font-family: TwitterChirp;
     font-weight: 700;
     font-size: 15px;
     margin: 0;
+    color: #0f1419;
+}
+
+.verified-account-logo {
+    height: 18.5px;
+    width: 18.5px;
+    margin-left: 2px;
 }
 
 .username {
-    font-family: SF-Pro-Text;
-    font-weight: 500;
+    font-family: TwitterChirp;
+    font-weight: 400;
     font-size: 15px;
     color: #536471;
     margin: 0;
     margin-left: 5px;
+    letter-spacing: -0.2px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.interpunct {
+    font-family: TwitterChirp;
+    font-weight: 400;
+    font-size: 15px;
+    color: #536471;
+    margin: 0;
+    margin-left: 5px;
+    letter-spacing: -0.2px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .tweet-body-text {
-    font-family: SF-Pro-Text;
-    font-weight: 500;
+    font-family: TwitterChirp;
+    font-weight: 400;
     font-size: 15px;
     margin: 0;
-    line-height: 1.3;
-    letter-spacing: -0.2px;
+    line-height: 20px;
+    color: #0f1419;
+    /* letter-spacing: -0.2px; */
 
 }
 

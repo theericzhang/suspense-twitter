@@ -15,6 +15,9 @@ export default function Wrapper() {
         fetchTweetData();
     }, [])
 
+    const currentDate = new Date();
+    const currentTimeSinceEpochInms = currentDate.getTime();
+    console.log(currentTimeSinceEpochInms);
     const tweetDataArray = tweetData?.myTimelineTweetDataObject?.tweetsDataArray;
     const myUserProfileData = tweetData?.myTimelineTweetDataObject?.myUserProfileData;
     const tweetComponentArray = tweetDataArray?.map((tweet, index) => {
@@ -24,8 +27,10 @@ export default function Wrapper() {
                    username={myUserProfileData?.data[0]?.username}
                    profile_image_url={myUserProfileData?.data[0]?.profile_image_url}
                    public_metrics={tweet?.public_metrics} 
-                   key={tweet + index} 
+                   time_created={tweet?.created_at}
+                   currentTimeSinceEpochInms={currentTimeSinceEpochInms}
                    isLastTweet={index === tweetDataArray?.length - 1}
+                   key={tweet + index} 
             />
         )
     })
