@@ -71,7 +71,7 @@
 }
 
 .App {
-    height: 100vh;
+    margin: 40px 0;
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -101,6 +101,7 @@
     display: flex;
     flex-direction: row;
     padding: 14px 17px;
+    padding-bottom: 10px;
     transition: cubic-bezier(0.075, 0.82, 0.165, 1);
     transition-duration: 1s;
     background-color: #FFF;
@@ -193,7 +194,20 @@
     line-height: 20px;
     color: #0f1419;
     /* letter-spacing: -0.2px; */
+}
 
+.tweet-body-media-wrapper {
+    display: flex;
+    width: 490px;
+    border-radius: 14px;
+    overflow: hidden;
+    margin-top: 15px;
+    margin-bottom: 7px;
+}
+
+.tweet-body-media {
+    width: 100%;
+    height: auto;
 }
 
 .tweet-actions {
@@ -201,7 +215,7 @@
     flex-direction: row;
     margin: 0;
     /* padding: 7px; */
-    margin: 7px 0;
+    margin-top: 10px;
     align-items: center;
     column-gap: 80px;
 }

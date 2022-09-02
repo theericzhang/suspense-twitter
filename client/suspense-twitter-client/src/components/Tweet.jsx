@@ -4,10 +4,11 @@ export default function Tweet( { text,
                                  displayName,
                                  username,
                                  profile_image_url,
+                                 isVerified,
                                  public_metrics,
                                  time_created,
                                  currentTimeSinceEpochInms,
-                                 isVerified,
+                                 mediaArray,
                                  isLastTweet
                                 } ) 
 {
@@ -21,7 +22,11 @@ export default function Tweet( { text,
     // Using those values, we will be able to calculate the time difference between the current time and the time of tweet
     const timeCreatedObject = new Date(time_created);
     const timeCreatedObjectMonth = timeCreatedObject.getMonth();
+    const timeCreatedObjectYear = timeCreatedObject.getFullYear();
     
+    const timeNow = new Date();
+    const timeNowYear = timeNow.getFullYear();
+
     // converting time units to milliseconds to compare with the difference btwn currentTimeSinceEpochInms and timeCreatedInms
     // for example, if we see that the difference is greater than a minute, we know that its value is at least a minute - meaning we can possibly display a 'm' unit for the tweetTimePlaceholder.
     const msInADay = 86400000;
@@ -29,6 +34,7 @@ export default function Tweet( { text,
     const msInAMinute = 60000;
     const msInASecond = 1000;
 
+    const isOlderThanStartOfYear = timeNowYear > timeCreatedObjectYear;
     const isOlderThanOneDay = currentTimeSinceEpochInms - timeCreatedInms > msInADay;
     const isOlderThanOneHour = currentTimeSinceEpochInms - timeCreatedInms > msInAnHour;
     const isOlderThanOneMinute = currentTimeSinceEpochInms - timeCreatedInms > msInAMinute;
@@ -37,8 +43,9 @@ export default function Tweet( { text,
     const monthToString = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
 
     let tweetTimePlaceholder = "";
-    
-    if ( isOlderThanOneDay ) {
+    if ( isOlderThanStartOfYear ) {
+        tweetTimePlaceholder = monthToString[timeCreatedObjectMonth] + " " + timeCreatedObject.getDate() + ", " + timeCreatedObject.getFullYear();
+    } else if ( !isOlderThanStartOfYear && isOlderThanOneDay ) {
         // display the date (month, day)
         // console.log("how u do this one ");
         // console.log("Expected longer than a day old: " + timeCreatedObject.getMonth() + " " + timeCreatedObject.getDate());
@@ -47,15 +54,18 @@ export default function Tweet( { text,
         // display hours + 'h' 
         // console.log("hours: ", Math.floor((currentTimeSinceEpochInms - timeCreatedInms) / msInAnHour));
         tweetTimePlaceholder = Math.floor((currentTimeSinceEpochInms - timeCreatedInms) / msInAnHour) + "h";
-    } else if ( !isOlderThanOneDay && !isOlderThanOneHour && isOlderThanOneMinute ) {
+    } else if ( !isOlderThanOneHour && isOlderThanOneMinute ) {
         // display minutes + 'm'
         // console.log("minutes: ", Math.floor((currentTimeSinceEpochInms - timeCreatedInms) / msInAMinute));
         tweetTimePlaceholder = Math.floor((currentTimeSinceEpochInms - timeCreatedInms) / msInAMinute) + "m";
-    } else if ( !isOlderThanOneDay && !isOlderThanOneHour && !isOlderThanOneMinute && isOlderThanOneSecond ) {
+    } else if ( !isOlderThanOneMinute && isOlderThanOneSecond ) {
         // display seconds + "s"
         // console.log("seconds: ", Math.floor((currentTimeSinceEpochInms - timeCreatedInms) / msInASecond));
         tweetTimePlaceholder = Math.floor((currentTimeSinceEpochInms - timeCreatedInms) / msInASecond) + "s";
     } else {}
+
+    // media
+    const isMediaEmpty = mediaArray.length === 0;
 
     return (
         <>
@@ -76,6 +86,10 @@ export default function Tweet( { text,
                     </div>
                     <p className="tweet-body-text">{text}</p>
                     {/* determine if there is media to be displayed */}
+                    {!isMediaEmpty && <div className="tweet-body-media-wrapper">
+                                          <img src={mediaArray[0]?.url} alt="" className="tweet-body-media" />
+                                      </div>
+                    }
                     <div className="tweet-actions">
                         <div className="tweet-action-wrapper">
                             <button className="tweet-action-button">

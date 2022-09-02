@@ -20,33 +20,35 @@ app.listen(port, () => {
 // create a main Twitter client with our Bearer Token
 const clientMain = new TwitterApi(process.env.BEARER_TOKEN);
 
+const numberOfTweetsToFetch = 5;
+
 // set this client to read-only since we are only pulling information from the API
 const roClient = clientMain.readOnly;
 
 // identify a user to pull data from (me)
 const user = await roClient.v2.usersByUsernames("POTUS");
 const myTwitterId = user?.data[0]?.id;
-console.log(myTwitterId);
+// console.log(myTwitterId);
 
 // GET user information. Returns Profile Image, Username, Display Name, and ID
 const myUserProfileData = await roClient.v2.users(myTwitterId, {
     "user.fields": ["profile_image_url", "verified"]
 });
-console.log(myUserProfileData);
+// console.log(myUserProfileData);
 
 const myUserAvatarLink = myUserProfileData?.data[0]?.profile_image_url;
-console.log(myUserAvatarLink);
+// console.log(myUserAvatarLink);
 
 // GET user Timeline - set maximum results to 5 tweets, with expansions of media information and referenced tweets.
 const myTimeline = await roClient.v2.userTimeline(myTwitterId, {
-    max_results: 5,
+    max_results: numberOfTweetsToFetch,
     expansions: [
         "attachments.media_keys",
         "attachments.poll_ids",
         "referenced_tweets.id",
     ],
     "tweet.fields": ["public_metrics", "created_at"],
-    "media.fields": ["url"],
+    "media.fields": ["url", "preview_image_url"],
 });
 
 // myTimeline.includes contains a TwitterV2IncludesHelper instance
@@ -56,16 +58,20 @@ const myTimeline = await roClient.v2.userTimeline(myTwitterId, {
 let i = 0;
 let myTimelineTweetData = []
 for await (const tweet of myTimeline) {
-    myTimelineTweetData = [ ...myTimelineTweetData, tweet ];
+    // myTimelineTweetData = [ ...myTimelineTweetData, tweet ];
+    const medias = myTimeline.includes.medias(tweet);
+    myTimelineTweetData = [ ...myTimelineTweetData, {
+        'tweet': tweet,
+        'media': medias
+    } ];
     // returns 5 tweet objects from reverse chron order.
     // if the tweets include a referenced tweet (e.g. a retweet)
     // i need to somehow indicate that those tweets were retweeted.
     // if tweet.referenced_tweets != null {include logo rendering} (from the client side, at least)
 
-    const medias = myTimeline.includes.medias(tweet);
-    // console.log("medias is: ", medias);
+    console.log(myTimelineTweetData);
     i++;
-    if (i === 5) {
+    if (i === numberOfTweetsToFetch) {
         // console.log("the tweet array", myTimelineTweetData);
         break;
     }
