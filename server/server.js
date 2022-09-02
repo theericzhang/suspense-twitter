@@ -20,13 +20,14 @@ app.listen(port, () => {
 // create a main Twitter client with our Bearer Token
 const clientMain = new TwitterApi(process.env.BEARER_TOKEN);
 
-const numberOfTweetsToFetch = 5;
+const numberOfTweetsToFetch = 10;
+const usernameQuery = "neee_eeed";
 
 // set this client to read-only since we are only pulling information from the API
 const roClient = clientMain.readOnly;
 
 // identify a user to pull data from (me)
-const user = await roClient.v2.usersByUsernames("POTUS");
+const user = await roClient.v2.usersByUsernames(usernameQuery);
 const myTwitterId = user?.data[0]?.id;
 // console.log(myTwitterId);
 

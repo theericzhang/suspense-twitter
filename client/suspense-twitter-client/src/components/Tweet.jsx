@@ -66,6 +66,7 @@ export default function Tweet( { text,
 
     // media
     const isMediaEmpty = mediaArray.length === 0;
+    const isMediaTypePhoto = mediaArray[0]?.url !== undefined ? true : false;
 
     return (
         <>
@@ -87,7 +88,7 @@ export default function Tweet( { text,
                     <p className="tweet-body-text">{text}</p>
                     {/* determine if there is media to be displayed */}
                     {!isMediaEmpty && <div className="tweet-body-media-wrapper">
-                                          <img src={mediaArray[0]?.url} alt="" className="tweet-body-media" />
+                                          <img src={isMediaTypePhoto ? mediaArray[0]?.url : mediaArray[0]?.preview_image_url} alt="" className="tweet-body-media" />
                                       </div>
                     }
                     <div className="tweet-actions">
