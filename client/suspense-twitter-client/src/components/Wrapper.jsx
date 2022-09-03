@@ -1,13 +1,47 @@
-import { React, useContext } from "react";
+import { React, useState, useEffect } from "react";
 import Tweet from "./Tweet";
-import { TweetDataContext } from "../App";
 
 export default function Wrapper() {
-    const tweetDataArray = useContext(TweetDataContext)
-    return(
+    const [ tweetData, setTweetData ] = useState({});
+    
+    async function fetchTweetData() {
+        const res = await fetch('http://localhost:5000/tweets');
+        const data = await res.json();
+        setTweetData(data);
+        console.log(data);
+    }
+
+    useEffect(() => {
+        fetchTweetData();
+    }, [])
+
+    const currentDate = new Date();
+    const currentTimeSinceEpochInms = currentDate.getTime();
+    console.log(currentTimeSinceEpochInms);
+    const tweetDataArray = tweetData?.myTimelineTweetDataObject?.tweetsDataArray;
+    const myUserProfileData = tweetData?.myTimelineTweetDataObject?.myUserProfileData;
+    const tweetComponentArray = tweetDataArray?.map((tweetData, index) => {
+        return (
+            <Tweet text={tweetData?.tweet?.text}
+                   displayName={myUserProfileData?.data[0]?.name}
+                   username={myUserProfileData?.data[0]?.username}
+                   profile_image_url={myUserProfileData?.data[0]?.profile_image_url}
+                   isVerified={myUserProfileData?.data[0]?.verified}
+                   public_metrics={tweetData?.tweet?.public_metrics} 
+                   time_created={tweetData?.tweet?.created_at}
+                   currentTimeSinceEpochInms={currentTimeSinceEpochInms}
+                   mediaArray={tweetData?.media}
+                   isLastTweet={index === tweetDataArray?.length - 1}
+                   key={tweetData?.tweet + index} 
+            />
+        )
+    })
+
+    console.log(tweetComponentArray);
+    
+    return (
         <section className="wrapper">
-            <h2>test content</h2>
-            <Tweet />
+            {tweetComponentArray}
         </section>
     )
 }
