@@ -110,7 +110,8 @@ export default function Tweet( { text,
                     {/* determine if there is media to be displayed */}
                     {!isMediaEmpty && <div className="tweet-body-media-wrapper">
                                           {!isMediaTypePhoto && <div className="tweet-body-media-warning">
-                                                                    <img src={hasPreviewMediaUrl && mediaArray[0]?.preview_image_url} alt="" className="tweet-body-media" />
+                                                                    <h5 className="tweet-body-media-warning-text">Due to the limitations of Twitter-API-v2, this {mediaArray[0]?.type} cannot be played</h5>
+                                                                    <img src={hasPreviewMediaUrl && mediaArray[0]?.preview_image_url} alt="" className="tweet-body-media" id="darkened"/>
                                                                 </div>}
                                           {isMediaTypePhoto && <img src={hasMediaUrl && mediaArray[0]?.url} alt="" className="tweet-body-media" />}
                                       </div>

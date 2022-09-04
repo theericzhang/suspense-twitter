@@ -167,14 +167,31 @@
 .tweet-body-media-warning {
     display: flex;
     width: fit-content;
-    background-color: #0f1419;
-    opacity: 0.3;
+    position: relative;
+    justify-content: center;
+}
+
+.tweet-body-media-warning-text {
+    position: absolute;
+    align-self: center;
+    text-align: center;
+    color: #F0F3F4;
+    text-shadow: 1px 1px 2px #0f1419;
+    font-family: TwitterChirp;
+    font-weight: 600;
+    font-size: 20px;
+    margin: 20px;
+    z-index: 2;
 }
 
 .tweet-body-media {
     max-width: 100%;
     max-height: 510px;
     height: auto;
+}
+
+#darkened {
+    filter: brightness(30%);
 }
 
 .tweet-actions {
