@@ -164,6 +164,13 @@
     margin-bottom: 7px;
 }
 
+.tweet-body-media-warning {
+    display: flex;
+    width: fit-content;
+    background-color: #0f1419;
+    opacity: 0.3;
+}
+
 .tweet-body-media {
     max-width: 100%;
     max-height: 510px;
