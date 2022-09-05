@@ -164,10 +164,82 @@
     margin-bottom: 7px;
 }
 
+.tweet-body-media-warning {
+    display: flex;
+    width: fit-content;
+    position: relative;
+    justify-content: center;
+}
+
+.tweet-body-media-warning-text {
+    position: absolute;
+    align-self: center;
+    text-align: center;
+    color: #F0F3F4;
+    text-shadow: 1px 1px 2px #0f1419;
+    font-family: TwitterChirp;
+    font-weight: 600;
+    font-size: 20px;
+    margin: 20px;
+    z-index: 2;
+}
+
+.tweet-body-media-two-column-layout {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    row-gap: 5px;
+    width: 100%;
+}
+
+/* .tweet-body-media-three-photo-layout {
+
+} */
+
+.tweet-body-media-half-wrapper {
+    display: flex;
+    justify-content: center;
+    max-width: 49.7%;
+    height: 284px;
+    overflow: hidden;
+}
+
+.tweet-body-media-half {
+    height: 100%;
+}
+
+.tweet-body-media-quarter-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    height: 140px;
+}
+
+.tweet-body-media-quarter {
+    width: 100%;
+    height: 255px;
+    justify-self: center;
+    object-fit: cover;
+}
+
+.tweet-body-media-two-quarters-photo-layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 49.7%;
+    height: 284px;
+    overflow: hidden;
+}
+
 .tweet-body-media {
     max-width: 100%;
     max-height: 510px;
     height: auto;
+}
+
+#darkened {
+    filter: brightness(30%);
 }
 
 .tweet-actions {
