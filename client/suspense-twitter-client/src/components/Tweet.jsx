@@ -70,20 +70,6 @@ export default function Tweet( { text,
     const hasPreviewMediaUrl = mediaArray[0]?.preview_image_url !== undefined ? true : false;
     const isMediaTypePhoto = mediaArray[0]?.type === "photo";
 
-    const twoPhotoLayout = <div className="tweet-body-media-two-column-layout">
-                               <img src={hasMediaUrl && mediaArray[0]?.url} alt="" className="tweet-body-media-half" />
-                               <img src={hasMediaUrl && mediaArray[1]?.url} alt="" className="tweet-body-media-half" />
-                           </div>;
-    
-    const threePhotoLayout = mediaArray?.length === 3 && <div className="tweet-body-media-two-column-layout">
-                                                            <img src={hasMediaUrl && mediaArray[0]?.url} alt="" className="tweet-body-media-half" />
-                                                            <div className="tweet-body-media-two-quarters-photo-layout">
-                                                                <img src={hasMediaUrl && mediaArray[1]?.url} alt="" className="tweet-body-media-quarter" />
-                                                                <img src={hasMediaUrl && mediaArray[2]?.url} alt="" className="tweet-body-media-quarter" />
-                                                            </div>
-                                                        </div>;
-
-
     let photoLayout;
     switch (mediaArray?.length) {
         case 1:
