@@ -2,6 +2,7 @@ import { Suspense, useState, useEffect, createContext } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import AppFrame from "./components/AppFrame";
+import Toggle from "./components/Toggle";
 
 export const ColorSchemeContext = createContext();
 
@@ -26,6 +27,9 @@ function App() {
         <ColorSchemeContext.Provider value={colorScheme}>
             <div className="App" id={colorScheme === 'light' ? '' : 'dark'}>
                 <AppFrame />
+                <Toggle colorScheme={colorScheme} 
+                        setColorScheme={setColorScheme}
+                />
             </div>
         </ColorSchemeContext.Provider>
     );
