@@ -29,12 +29,21 @@
 }
 
 .App {
-    margin: 40px 0;
+    padding: 40px 0;
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
     /* change height and width properties before final deployment? */
+}
+
+#dark {
+    background-color: #15202B;
+    color: rgb(247, 249, 249);
+}
+
+#dark-secondary {
+    color: #8B98A5;
 }
 
 .app-frame {
@@ -55,6 +64,10 @@
     flex-direction: column;
 }
 
+#dark-wrapper {
+    border: 1px #3A444C solid;
+}
+
 .tweet-wrapper {
     display: flex;
     flex-direction: row;
@@ -67,6 +80,14 @@
 
 .tweet-wrapper:hover {
     background-color: #F0F3F4;
+}
+
+#dark-tweet-wrapper {
+    background-color: #15202B;
+}
+
+#dark-tweet-wrapper:hover {
+    background-color: #1E2731;
 }
 
 .tweet-avatar-column {
@@ -100,6 +121,10 @@
     font-size: 15px;
     margin: 0;
     color: #0f1419;
+}
+
+#dark-display-name {
+    color:rgb(247, 249, 249);
 }
 
 .verified-account-logo {
@@ -152,6 +177,10 @@
     line-height: 20px;
     color: #0f1419;
     /* letter-spacing: -0.2px; */
+}
+
+#dark-tweet-body-text {
+    color: rgb(247, 249, 249);
 }
 
 .tweet-body-media-wrapper {
@@ -293,20 +322,23 @@
 }
 
 .tweet-action-wrapper:hover #reply-wrapper {
-    background-color: #E7EEF5;
+    /* background-color: #E7EEF5; */
+    background-color: rgba(71, 155, 233, 0.09);
 }
 
 .tweet-action-wrapper:hover #retweet-wrapper {
-    background-color: #E7EFEA;
+    /* background-color: #E7EFEA; */
+    background-color: rgba(83, 182, 129, 0.09);
 }
 
 .tweet-action-wrapper:hover #react-wrapper {
-    background-color: #F2E5EB;
+    /* background-color: #F2E5EB; */
+    background-color: rgba(229, 58, 126, 0.09);
 }
 
 .tweet-action-wrapper:hover #share-wrapper {
-    background-color: #E7EEF5;
-
+    /* background-color: #E7EEF5; */
+    background-color: rgba(71, 155, 233, 0.09);
 }
 
 .tweet-action-wrapper:hover #reply {
@@ -351,4 +383,8 @@
     border-top: 1px #F0F3F4 solid;
     border-left: none;
     border-right: none;
+}
+
+#tweet-divider-dark {
+    border-top: 1px #3A444C solid;
 }
