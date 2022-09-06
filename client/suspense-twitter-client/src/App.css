@@ -267,7 +267,7 @@
     color: #58636F;
     margin: 2px 0;
     transition: color cubic-bezier(0.075, 0.82, 0.165, 1);
-    transition-duration: 0.75s;
+    transition-duration: 1.5s;
     width: 32px;
 }
 
@@ -288,7 +288,7 @@
     align-items: center;
     border-radius: 50%;
     transition: background-color cubic-bezier(0.075, 0.82, 0.165, 1);
-    transition-duration: 0.75s;
+    transition-duration: 1.5s;
     background-color: transparent;
 }
 
@@ -342,7 +342,7 @@
     height: 20px;
     fill:#6E767D;
     transition: fill cubic-bezier(0.075, 0.82, 0.165, 1);
-    transition-duration: 0.75s;
+    transition-duration: 1.5s;
 }
 
 .tweet-divider {
