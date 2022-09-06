@@ -247,7 +247,8 @@
     flex-direction: row;
     margin: 0;
     /* padding: 7px; */
-    margin-top: 10px;
+    /* margin-top: 10px; */
+    margin-left: -8px;
     align-items: center;
     column-gap: 80px;
 }
@@ -255,7 +256,8 @@
 .tweet-action-wrapper {
     display: flex;
     flex-direction: row;
-    column-gap: 12px;
+    column-gap: 7px;
+    align-items: center;
 }
 
 .tweet-action-counter {
@@ -265,7 +267,7 @@
     color: #58636F;
     margin: 2px 0;
     transition: color cubic-bezier(0.075, 0.82, 0.165, 1);
-    transition-duration: 0.5s;
+    transition-duration: 0.75s;
     width: 32px;
 }
 
@@ -278,31 +280,60 @@
     transition-duration: 1s;
 }
 
-.tweet-action-button:hover #reply {
+.tweet-action-button-wrapper {
+    height: 35px;
+    width: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: background-color cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 0.75s;
+    background-color: transparent;
+}
+
+.tweet-action-wrapper:hover #reply-wrapper {
+    background-color: #E7EEF5;
+}
+
+.tweet-action-wrapper:hover #retweet-wrapper {
+    background-color: #E7EFEA;
+}
+
+.tweet-action-wrapper:hover #react-wrapper {
+    background-color: #F2E5EB;
+}
+
+.tweet-action-wrapper:hover #share-wrapper {
+    background-color: #E7EEF5;
+
+}
+
+.tweet-action-wrapper:hover #reply {
     fill: #479BE9;
 }
 
-.tweet-action-button:hover ~ #replyCounter{
+.tweet-action-wrapper:hover #replyCounter{
     color: #479BE9;
 }
 
-.tweet-action-button:hover #retweet, #retweetCounter{
+.tweet-action-wrapper:hover #retweet, #retweetCounter{
     fill: #53B681;
 }
 
-.tweet-action-button:hover ~ #retweetCounter{
+.tweet-action-wrapper:hover #retweetCounter{
     color: #53B681;
 }
 
-.tweet-action-button:hover #react, #reactCounter{
+.tweet-action-wrapper:hover #react, #reactCounter{
     fill: #E53A7F;
 }
 
-.tweet-action-button:hover ~ #reactCounter{
+.tweet-action-wrapper:hover #reactCounter{
     color: #E53A7F;
 }
 
-.tweet-action-button:hover #share{
+.tweet-action-wrapper:hover #share{
     fill: #479BE9;
 }
 
@@ -311,7 +342,7 @@
     height: 20px;
     fill:#6E767D;
     transition: fill cubic-bezier(0.075, 0.82, 0.165, 1);
-    transition-duration: 0.5s;
+    transition-duration: 0.75s;
 }
 
 .tweet-divider {
