@@ -139,6 +139,8 @@
     font-size: 15px;
     margin: 0;
     color: #0f1419;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
 }
 
 #dark-display-name {
@@ -149,6 +151,8 @@
     height: 18.5px;
     width: 18.5px;
     margin-left: 2px;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
 }
 
 .username {
@@ -161,6 +165,8 @@
     letter-spacing: -0.2px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
 }
 
 .interpunct {
@@ -173,6 +179,8 @@
     letter-spacing: -0.2px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
 }
 
 .tweet-time {
@@ -185,6 +193,8 @@
     letter-spacing: -0.2px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
 }
 
 .tweet-body-text {
@@ -194,6 +204,8 @@
     margin: 0;
     line-height: 20px;
     color: #0f1419;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
     /* letter-spacing: -0.2px; */
 }
 
@@ -446,6 +458,8 @@
     padding: 0;
     margin: 0;
     border: 0;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
 }
 
 .toggle-wrapper:hover {
@@ -457,6 +471,9 @@
 }
 
 .toggle-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: rgb(70, 170, 237);
     margin: 5px;
     width: 26px;

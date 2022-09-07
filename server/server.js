@@ -21,7 +21,7 @@ app.listen(port, () => {
 const clientMain = new TwitterApi(process.env.BEARER_TOKEN);
 
 const numberOfTweetsToFetch = 10;
-const usernameQuery = "POTUS";
+const usernameQuery = "tim_cook";
 
 // set this client to read-only since we are only pulling information from the API
 const roClient = clientMain.readOnly;

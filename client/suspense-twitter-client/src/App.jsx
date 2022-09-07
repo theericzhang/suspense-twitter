@@ -1,5 +1,4 @@
 import { Suspense, useState, useEffect, createContext } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import AppFrame from "./components/AppFrame";
 import Toggle from "./components/Toggle";
