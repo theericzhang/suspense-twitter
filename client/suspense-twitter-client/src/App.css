@@ -1,3 +1,9 @@
+/* THE UH OH ZONE  */
+* {
+    /* transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s; */
+}
+
 /* FONTS  */
 
 @font-face {
@@ -29,12 +35,25 @@
 }
 
 .App {
-    margin: 40px 0;
+    padding: 40px 0;
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
+    background-color: #FFFFFF;
     /* change height and width properties before final deployment? */
+}
+
+#dark {
+    background-color: #15202B;
+    color: rgb(247, 249, 249);
+}
+
+#dark-secondary {
+    color: #8B98A5;
 }
 
 .app-frame {
@@ -53,6 +72,12 @@
     /* remove height after populating with content */
     display: flex;
     flex-direction: column;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
+}
+
+#dark-wrapper {
+    border: 1px #3A444C solid;
 }
 
 .tweet-wrapper {
@@ -67,6 +92,20 @@
 
 .tweet-wrapper:hover {
     background-color: #F0F3F4;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
+}
+
+#dark-tweet-wrapper {
+    background-color: #15202B;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
+}
+
+#dark-tweet-wrapper:hover {
+    background-color: #1E2731;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
 }
 
 .tweet-avatar-column {
@@ -100,12 +139,20 @@
     font-size: 15px;
     margin: 0;
     color: #0f1419;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
+}
+
+#dark-display-name {
+    color:rgb(247, 249, 249);
 }
 
 .verified-account-logo {
     height: 18.5px;
     width: 18.5px;
     margin-left: 2px;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
 }
 
 .username {
@@ -118,6 +165,8 @@
     letter-spacing: -0.2px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
 }
 
 .interpunct {
@@ -130,6 +179,8 @@
     letter-spacing: -0.2px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
 }
 
 .tweet-time {
@@ -142,6 +193,8 @@
     letter-spacing: -0.2px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
 }
 
 .tweet-body-text {
@@ -151,7 +204,13 @@
     margin: 0;
     line-height: 20px;
     color: #0f1419;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
     /* letter-spacing: -0.2px; */
+}
+
+#dark-tweet-body-text {
+    color: rgb(247, 249, 249);
 }
 
 .tweet-body-media-wrapper {
@@ -250,7 +309,7 @@
     /* margin-top: 10px; */
     margin-left: -8px;
     align-items: center;
-    column-gap: 80px;
+    column-gap: 60px;
 }
 
 .tweet-action-wrapper {
@@ -265,6 +324,17 @@
     font-size: 13px;
     font-weight: 400;
     color: #58636F;
+    margin: 2px 0;
+    transition: color cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1.5s;
+    width: 32px;
+}
+
+.tweet-action-counter-dark {
+    font-family: TwitterChirp;
+    font-size: 13px;
+    font-weight: 400;
+    color: #8D98A4;
     margin: 2px 0;
     transition: color cubic-bezier(0.075, 0.82, 0.165, 1);
     transition-duration: 1.5s;
@@ -293,28 +363,43 @@
 }
 
 .tweet-action-wrapper:hover #reply-wrapper {
-    background-color: #E7EEF5;
+    /* background-color: #E7EEF5; */
+    background-color: rgba(71, 155, 233, 0.09);
 }
 
 .tweet-action-wrapper:hover #retweet-wrapper {
-    background-color: #E7EFEA;
+    /* background-color: #E7EFEA; */
+    background-color: rgba(83, 182, 129, 0.09);
 }
 
 .tweet-action-wrapper:hover #react-wrapper {
-    background-color: #F2E5EB;
+    /* background-color: #F2E5EB; */
+    background-color: rgba(229, 58, 126, 0.09);
 }
 
 .tweet-action-wrapper:hover #share-wrapper {
-    background-color: #E7EEF5;
-
+    /* background-color: #E7EEF5; */
+    background-color: rgba(71, 155, 233, 0.09);
 }
 
-.tweet-action-wrapper:hover #reply {
+.tweet-action-wrapper:hover #reply, #reply-counter-dark {
     fill: #479BE9;
 }
 
 .tweet-action-wrapper:hover #replyCounter{
     color: #479BE9;
+}
+
+#reply-counter-dark {
+    color: #8D98A4;    
+}
+
+#retweet-counter-dark {
+    color: #8D98A4;
+}
+
+#react-counter-dark {
+    color: #8D98A4;
 }
 
 .tweet-action-wrapper:hover #retweet, #retweetCounter{
@@ -351,4 +436,57 @@
     border-top: 1px #F0F3F4 solid;
     border-left: none;
     border-right: none;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
+}
+
+#tweet-divider-dark {
+    border-top: 1px #3A444C solid;
+}
+
+.toggle-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 80px;
+    height: 36px;
+    background-color: #e5e8e9;
+    position: absolute;
+    border-radius: 30px;
+    top: 40px;
+    right: 510px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
+}
+
+.toggle-wrapper:hover {
+    cursor: pointer;
+}
+
+#toggle-wrapper-dark {
+    background-color: #1E2731;
+}
+
+.toggle-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(70, 170, 237);
+    margin: 5px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    position: absolute;
+    right: 44px;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
+}
+
+#toggle-circle-dark {
+    right: 0px;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
 }

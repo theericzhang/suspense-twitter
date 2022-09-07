@@ -1,5 +1,6 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useContext } from "react";
 import Tweet from "./Tweet";
+import { ColorSchemeContext } from "../App";
 
 export default function Wrapper() {
     const [ tweetData, setTweetData ] = useState({});
@@ -13,7 +14,9 @@ export default function Wrapper() {
 
     useEffect(() => {
         fetchTweetData();
-    }, [])
+    }, []);
+
+    const colorScheme = useContext(ColorSchemeContext);
 
     const currentDate = new Date();
     const currentTimeSinceEpochInms = currentDate.getTime();
@@ -40,7 +43,7 @@ export default function Wrapper() {
     console.log(tweetComponentArray);
     
     return (
-        <section className="wrapper">
+        <section className="wrapper" id={colorScheme === 'light' ? '' : 'dark-wrapper'}>
             {tweetComponentArray}
         </section>
     )
