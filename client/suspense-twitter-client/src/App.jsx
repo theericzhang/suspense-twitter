@@ -23,11 +23,19 @@ function App() {
         detectColorScheme();
     }, []);
 
-    // if (colorScheme === 'light') {
-    //     document.body.style.backgroundColor = "#15202B";
-    // } else if (colorScheme === 'dark') {
-    //     document.body.style.backgroundColor = "#FFFFFF";
-    // }
+    // useEffect(() => {
+    //     if (colorScheme === 'light') {
+    //         document.body.style.backgroundColor = "#15202B";
+    //     } else if (colorScheme === 'dark') {
+    //         document.body.style.backgroundColor = "#FFFFFF";
+    //     }
+    // }, [colorScheme]);
+
+    if (colorScheme === 'dark') {
+        document.body.style.backgroundColor = "#15202B";
+    } else if (colorScheme === 'light') {
+        document.body.style.backgroundColor = "#FFFFFF";
+    }
 
     return (
         <ColorSchemeContext.Provider value={colorScheme}>

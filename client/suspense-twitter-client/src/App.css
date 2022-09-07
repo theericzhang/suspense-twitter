@@ -1,7 +1,7 @@
 /* THE UH OH ZONE  */
 * {
-    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
-    transition-duration: 1s;
+    /* transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s; */
 }
 
 /* FONTS  */
@@ -43,6 +43,7 @@
     position: relative;
     transition: cubic-bezier(0.075, 0.82, 0.165, 1);
     transition-duration: 1s;
+    background-color: #FFFFFF;
     /* change height and width properties before final deployment? */
 }
 
@@ -91,14 +92,20 @@
 
 .tweet-wrapper:hover {
     background-color: #F0F3F4;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
 }
 
 #dark-tweet-wrapper {
     background-color: #15202B;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
 }
 
 #dark-tweet-wrapper:hover {
     background-color: #1E2731;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
 }
 
 .tweet-avatar-column {
@@ -457,8 +464,12 @@
     border-radius: 50%;
     position: absolute;
     right: 44px;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
 }
 
 #toggle-circle-dark {
     right: 0px;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
 }

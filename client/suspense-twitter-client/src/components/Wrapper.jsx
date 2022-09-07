@@ -14,7 +14,7 @@ export default function Wrapper() {
 
     useEffect(() => {
         fetchTweetData();
-    }, [])
+    }, []);
 
     const colorScheme = useContext(ColorSchemeContext);
 
