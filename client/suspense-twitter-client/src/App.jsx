@@ -23,6 +23,12 @@ function App() {
         detectColorScheme();
     }, []);
 
+    // if (colorScheme === 'light') {
+    //     document.body.style.backgroundColor = "#15202B";
+    // } else if (colorScheme === 'dark') {
+    //     document.body.style.backgroundColor = "#FFFFFF";
+    // }
+
     return (
         <ColorSchemeContext.Provider value={colorScheme}>
             <div className="App" id={colorScheme === 'light' ? '' : 'dark'}>

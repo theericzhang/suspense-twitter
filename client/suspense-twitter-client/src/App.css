@@ -290,7 +290,7 @@
     /* margin-top: 10px; */
     margin-left: -8px;
     align-items: center;
-    column-gap: 80px;
+    column-gap: 60px;
 }
 
 .tweet-action-wrapper {
@@ -305,6 +305,17 @@
     font-size: 13px;
     font-weight: 400;
     color: #58636F;
+    margin: 2px 0;
+    transition: color cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1.5s;
+    width: 32px;
+}
+
+.tweet-action-counter-dark {
+    font-family: TwitterChirp;
+    font-size: 13px;
+    font-weight: 400;
+    color: #8D98A4;
     margin: 2px 0;
     transition: color cubic-bezier(0.075, 0.82, 0.165, 1);
     transition-duration: 1.5s;
@@ -352,12 +363,24 @@
     background-color: rgba(71, 155, 233, 0.09);
 }
 
-.tweet-action-wrapper:hover #reply {
+.tweet-action-wrapper:hover #reply, #reply-counter-dark {
     fill: #479BE9;
 }
 
 .tweet-action-wrapper:hover #replyCounter{
     color: #479BE9;
+}
+
+#reply-counter-dark {
+    color: #8D98A4;    
+}
+
+#retweet-counter-dark {
+    color: #8D98A4;
+}
+
+#react-counter-dark {
+    color: #8D98A4;
 }
 
 .tweet-action-wrapper:hover #retweet, #retweetCounter{

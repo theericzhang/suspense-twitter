@@ -184,7 +184,7 @@ export default function Tweet( { text,
                                     </svg>
                                 </div>
                             </button>
-                            <h4 className="tweet-action-counter" id="replyCounter">{public_metrics?.reply_count == 0 ? '' : formatNumber(public_metrics?.reply_count)}</h4>
+                            <h4 className={colorScheme === 'light' ? 'tweet-action-counter' : 'tweet-action-counter-dark'} id="replyCounter">{public_metrics?.reply_count == 0 ? '' : formatNumber(public_metrics?.reply_count)}</h4>
                         </div>
                         <div className="tweet-action-wrapper">
                             <button className="tweet-action-button">
@@ -194,7 +194,7 @@ export default function Tweet( { text,
                                     </svg>
                                 </div>
                             </button>
-                            <h4 className="tweet-action-counter" id="retweetCounter">{public_metrics?.retweet_count == 0 ? '' : formatNumber(public_metrics?.retweet_count)}</h4>
+                            <h4 className={colorScheme === 'light' ? 'tweet-action-counter' : 'tweet-action-counter-dark'} id="retweetCounter">{public_metrics?.retweet_count == 0 ? '' : formatNumber(public_metrics?.retweet_count)}</h4>
                         </div>
                         <div className="tweet-action-wrapper">
                             <button className="tweet-action-button">
@@ -204,7 +204,7 @@ export default function Tweet( { text,
                                     </svg>
                                 </div>
                             </button>
-                            <h4 className="tweet-action-counter" id="reactCounter">{public_metrics?.like_count == 0 ? '' : formatNumber(public_metrics?.like_count)}</h4>
+                            <h4 className={colorScheme === 'light' ? 'tweet-action-counter' : 'tweet-action-counter-dark'} id="reactCounter">{public_metrics?.like_count == 0 ? '' : formatNumber(public_metrics?.like_count)}</h4>
                         </div>
                         <div className="tweet-action-wrapper">
                             <button className="tweet-action-button">
