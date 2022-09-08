@@ -111,6 +111,16 @@
 .tweet-avatar-column {
     width: calc(76px - 12px);
     display: flex;
+    flex-direction: column;
+}
+
+.tweet-reference-symbol {
+    height: 16px;
+    width: 16px;
+    padding: 0 10px;
+    margin-top: -3px;
+    margin-bottom: 5px;
+    align-self: flex-end;
 }
 
 .user-avatar {
@@ -124,6 +134,20 @@
     width: 530px;
     display: flex;
     flex-direction: column;
+}
+
+.tweet-reference-user-action {
+    margin: 0;
+    color: #536471;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
+    margin-top: -3px;
+    margin-bottom: 5px;
+    font-family: TwitterChirp;
+}
+
+#tweet-reference-user-action-dark {
+    color: #8B98A5;
 }
 
 .tweet-meta-info {
