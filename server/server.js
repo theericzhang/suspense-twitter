@@ -21,7 +21,7 @@ app.listen(port, () => {
 const clientMain = new TwitterApi(process.env.BEARER_TOKEN);
 
 const numberOfTweetsToFetch = 10;
-const usernameQuery = "tim_cook";
+const usernameQuery = "anericzhang";
 
 // set this client to read-only since we are only pulling information from the API
 const roClient = clientMain.readOnly;
@@ -56,21 +56,72 @@ const myTimeline = await roClient.v2.userTimeline(myTwitterId, {
 // how can i change this to display only 5 tweets?
 
 // console.log("logging data: ", myTimeline.data);
+
+async function findTweetsById (id) {
+    const lookupById = await roClient.v2.singleTweet(
+        id,
+        {
+            expansions: [
+                "attachments.media_keys",
+                "attachments.poll_ids",
+                "referenced_tweets.id",
+                "author_id"
+            ],
+            "tweet.fields": ["public_metrics", "created_at"],
+            "media.fields": ["url", "preview_image_url"],
+            "user.fields": ["profile_image_url", "verified", "url"]
+        }
+    )
+    console.log(lookupById);
+    console.log(lookupById?.includes?.users);
+    return lookupById;
+}
+
 let i = 0;
 let myTimelineTweetData = []
 for await (const tweet of myTimeline) {
     // myTimelineTweetData = [ ...myTimelineTweetData, tweet ];
-    const medias = myTimeline.includes.medias(tweet);
-    myTimelineTweetData = [ ...myTimelineTweetData, {
-        'tweet': tweet,
-        'media': medias
-    } ];
+
+    if (tweet?.hasOwnProperty("referenced_tweets")) {
+        // checking for the type of tweet 
+        // if tweet is a retweet, then we want to fetchh the original tweet with the id. this id is found by checking the referenced_tweets array, which contains the id of the original tweet
+        if (tweet?.referenced_tweets[0]?.type === "retweeted") {
+            const referencedTweet = await findTweetsById(tweet?.referenced_tweets[0]?.id);
+            myTimelineTweetData = [ ...myTimelineTweetData, {
+                'tweet': referencedTweet?.data,
+                'media': referencedTweet?.includes?.media,
+                'author': referencedTweet?.includes?.users,
+                'type': 'retweeted'
+            }]
+        } else if (tweet?.referenced_tweets[0]?.type === "quoted") {
+            const medias = myTimeline.includes.medias(tweet);
+            myTimelineTweetData = [ ...myTimelineTweetData, {
+                'tweet': tweet,
+                'media': medias,
+                'type': 'quoted'
+            } ];
+        } else if (tweet?.referenced_tweets[0]?.type === "replied_to") {
+            const medias = myTimeline.includes.medias(tweet);
+            myTimelineTweetData = [ ...myTimelineTweetData, {
+                'tweet': tweet,
+                'media': medias,
+                'type': 'replied_to'
+            } ];
+        } 
+    } else {
+        const medias = myTimeline.includes.medias(tweet);
+        myTimelineTweetData = [ ...myTimelineTweetData, {
+            'tweet': tweet,
+            'media': medias,
+            'type': 'self'
+        } ];
+    }
     // returns 5 tweet objects from reverse chron order.
     // if the tweets include a referenced tweet (e.g. a retweet)
     // i need to somehow indicate that those tweets were retweeted.
     // if tweet.referenced_tweets != null {include logo rendering} (from the client side, at least)
 
-    console.log(myTimelineTweetData);
+    // console.log(myTimelineTweetData);
     i++;
     if (i === numberOfTweetsToFetch) {
         // console.log("the tweet array", myTimelineTweetData);
@@ -83,11 +134,13 @@ const myTimelineTweetDataObject = {
     myUserProfileData: myUserProfileData
 }
 
+// console.log(myTimelineTweetDataObject);
+
 app.get('/tweets', (_, res) => {
     res.json({ ok: true, myTimelineTweetDataObject})
 })
 
-console.log('the tweet object', myTimelineTweetDataObject);
+// console.log('the tweet object', myTimelineTweetDataObject);
 
 //   for await (const tweet of myTimeline) {
 //     console.log("the tweet: ", tweet);
