@@ -40,11 +40,14 @@ function App() {
     return (
         <ColorSchemeContext.Provider value={colorScheme}>
             <div className="App" id={colorScheme === 'light' ? '' : 'dark'}>
+                <div className="sidebar-column-left"></div>
                 <AppFrame />
-                <Toggle colorScheme={colorScheme} 
-                        setColorScheme={setColorScheme}
-                />
-                <SearchBar colorScheme={colorScheme}/>
+                <div className="sidebar-column-right">
+                    <Toggle colorScheme={colorScheme} 
+                            setColorScheme={setColorScheme}
+                    />
+                    <SearchBar colorScheme={colorScheme}/>
+                </div>
             </div>
         </ColorSchemeContext.Provider>
     );
