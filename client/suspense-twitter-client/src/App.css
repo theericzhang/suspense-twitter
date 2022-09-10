@@ -514,3 +514,70 @@
     transition: cubic-bezier(0.075, 0.82, 0.165, 1);
     transition-duration: 1s;
 }
+
+.search-bar-wrapper {
+    position: absolute;
+    top: 0;
+}
+
+.search-bar-outer {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.search-icon {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    left: 20px;
+    fill: #536371;
+}
+
+#search-icon-dark {
+    fill: #8A98A5;
+}
+
+.search-bar {
+    width: 292px;
+    height: 45px;
+    border-radius: 22px;
+    border: 1px solid transparent;
+    background-color: #F0F3F4;
+    padding-left: 58px;
+    font-family: TwitterChirp;
+    font-size: 16px;
+}
+
+#search-bar-dark {
+    background-color: #273340;
+    caret-color: #FFFFFF;
+    color: #FFFFFF;
+}
+
+#search-bar-dark::placeholder {
+    color: #8A98A5;
+}
+
+.search-bar::placeholder {
+    color: #536371;
+}
+
+.search-bar:focus {
+    background-color: #FFFFFF;
+    border: 1px solid #1B9BEF;
+    outline: none;
+}
+
+.search-bar:focus ~ .search-icon {
+    fill: #1B9BEF;
+}
+
+#search-bar-dark:focus ~ .search-icon{
+    fill: #1B9BEF;
+}
+
+#search-bar-dark:focus {
+    background-color: #15202B;
+}

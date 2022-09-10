@@ -2,6 +2,7 @@ import { Suspense, useState, useEffect, createContext } from "react";
 import "./App.css";
 import AppFrame from "./components/AppFrame";
 import Toggle from "./components/Toggle";
+import SearchBar from "./components/SearchBar";
 
 export const ColorSchemeContext = createContext();
 
@@ -43,6 +44,7 @@ function App() {
                 <Toggle colorScheme={colorScheme} 
                         setColorScheme={setColorScheme}
                 />
+                <SearchBar colorScheme={colorScheme}/>
             </div>
         </ColorSchemeContext.Provider>
     );
