@@ -8,7 +8,12 @@ export const ColorSchemeContext = createContext();
 
 function App() {
 
-    const [ colorScheme, setColorScheme ] = useState('');
+    const [ colorScheme, setColorScheme ] = useState(
+        // we need to set the initial state to the color-scheme seen by the browser api first.
+        // cannot be useState('') or useState(null), since they are falsy values and will default to dark mode first, then produce an unwanted animation
+        // if the actual preferred color scheme is light
+        window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    );
 
     // using window events to detect color scheme set by user
     function detectColorScheme () {
@@ -22,14 +27,6 @@ function App() {
     useEffect(() => {
         detectColorScheme();
     }, []);
-
-    // useEffect(() => {
-    //     if (colorScheme === 'light') {
-    //         document.body.style.backgroundColor = "#15202B";
-    //     } else if (colorScheme === 'dark') {
-    //         document.body.style.backgroundColor = "#FFFFFF";
-    //     }
-    // }, [colorScheme]);
 
     if (colorScheme === 'dark') {
         document.body.style.backgroundColor = "#15202B";

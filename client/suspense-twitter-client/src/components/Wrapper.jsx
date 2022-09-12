@@ -8,21 +8,50 @@ export default function Wrapper() {
     const [ errorMessage, setErrorMessage ] = useState(null);
     
     async function fetchTweetData() {
-        try {
-            const res = await fetch('http://localhost:5000/tweets');
-            if (!res.ok) {
-                console.log(res); // returns response with status code
-                const responseError = await res.json();
-                // returns server side generated error, e.g. 'could not find user'
-                setErrorMessage(await responseError);
-                throw new Error(responseError);
-            }
-            const data = await res.json();
-            setTweetData(data);
-            console.log(data);
-        } catch (error) {
-            console.error(error);
+        const res = await fetch('http://localhost:5000/tweets');
+        if (!res.ok) {
+            console.log(res); // returns response with status code
+            const responseError = await res.json();
+            // returns server side generated error, e.g. 'could not find user'
+            setErrorMessage(await responseError);
         }
+        const data = await res.json();
+        setTweetData(data);
+        console.log(data);
+
+        // try catchh block attempt at error handling
+        // erroneous behavior - breaks rule of hooks. caught error will display rule of hooks error
+
+        // try {
+        //     const res = await fetch('http://localhost:5000/tweets');
+        //     if (!res.ok) {
+        //         console.log(res); // returns response with status code
+        //         const responseError = await res.json();
+        //         // returns server side generated error, e.g. 'could not find user'
+        //         setErrorMessage(await responseError);
+        //         throw new Error(responseError);
+        //     }
+        //     const data = await res.json();
+        //     setTweetData(data);
+        //     console.log(data);
+        // } catch (error) {
+        //     console.error(error);
+        // }
+
+
+        // fetch('http://localhost:5000/tweets')
+        // .then((res) => {
+        //     if (!res.ok) {
+        //         const responseError = res.json();
+        //         setErrorMessage(responseError);
+        //         throw new Error('responseError');
+        //     }
+        //     const data = res.json();
+        //     setTweetData(data);
+        // }).catch(err => {
+        //     console.error(err);
+        // })
+
     }
 
     useEffect(() => {
