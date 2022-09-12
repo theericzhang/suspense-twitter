@@ -16,6 +16,8 @@ app.get("/", (req, res) => {
     res.send("Hello World!");
 });
 
+let usernameQuery = "anericzhang";
+
 app.post("/search", (req, res) => {
     const { parcel } = req.body;
     console.log(parcel);
@@ -23,6 +25,7 @@ app.post("/search", (req, res) => {
         res.status(400).send({ status: 'failed' })
     } else {
         res.status(200).send({ status: 'received' })
+        usernameQuery = parcel;
     }
     
 })
@@ -35,7 +38,7 @@ app.listen(port, () => {
 const clientMain = new TwitterApi(process.env.BEARER_TOKEN);
 
 const numberOfTweetsToFetch = 10;
-const usernameQuery = "anericzhan";
+
 
 // set this client to read-only since we are only pulling information from the API
 const roClient = clientMain.readOnly;

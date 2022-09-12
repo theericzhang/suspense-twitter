@@ -56,6 +56,9 @@ export default function Wrapper() {
 
     useEffect(() => {
         fetchTweetData();
+        // To fetch again after data has been updated by user in search bar,
+        // try passing the fetchTweetData(); function as a prop to the search bar class
+        // then call the function after the post request has been made
     }, []);
 
     const colorScheme = useContext(ColorSchemeContext);
