@@ -37,6 +37,7 @@
 .App {
     padding: 40px 0;
     width: 100vw;
+    min-height: calc(100vh - 80px);
     display: flex;
     justify-content: center;
     position: relative;
@@ -58,7 +59,7 @@
 .app-frame {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
 }
 
@@ -597,4 +598,23 @@
 
 #search-bar-dark:focus {
     background-color: #15202B;
+}
+
+.error-wrapper {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-message {
+    font-family: TwitterChirp;
+    font-weight: 400;
+    font-size: 15px;
+    margin: 0;
+    line-height: 20px;
+    color: #536471;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
 }

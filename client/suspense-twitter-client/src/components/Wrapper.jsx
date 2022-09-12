@@ -1,15 +1,28 @@
 import { React, useState, useEffect, useContext } from "react";
 import Tweet from "./Tweet";
+import Error from "./Error";
 import { ColorSchemeContext } from "../App";
 
 export default function Wrapper() {
     const [ tweetData, setTweetData ] = useState({});
+    const [ errorMessage, setErrorMessage ] = useState(null);
     
     async function fetchTweetData() {
-        const res = await fetch('http://localhost:5000/tweets');
-        const data = await res.json();
-        setTweetData(data);
-        console.log(data);
+        try {
+            const res = await fetch('http://localhost:5000/tweets');
+            if (!res.ok) {
+                console.log(res); // returns response with status code
+                const responseError = await res.json();
+                // returns server side generated error, e.g. 'could not find user'
+                setErrorMessage(await responseError);
+                throw new Error(responseError);
+            }
+            const data = await res.json();
+            setTweetData(data);
+            console.log(data);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     useEffect(() => {
@@ -46,6 +59,7 @@ export default function Wrapper() {
     
     return (
         <section className="wrapper" id={colorScheme === 'light' ? '' : 'dark-wrapper'}>
+            {errorMessage && <Error message={errorMessage.message} /> }
             {tweetComponentArray}
         </section>
     )
