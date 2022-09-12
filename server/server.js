@@ -9,9 +9,23 @@ const port = 5000;
 // use cors on our express instance to allow for data fetching from client-side
 app.use(cors());
 
+// letting our express instance know that we are expecting json
+app.use(express.json());
+
 app.get("/", (req, res) => {
     res.send("Hello World!");
 });
+
+app.post("/search", (req, res) => {
+    const { parcel } = req.body;
+    console.log(parcel);
+    if (!parcel) {
+        res.status(400).send({ status: 'failed' })
+    } else {
+        res.status(200).send({ status: 'received' })
+    }
+    
+})
 
 app.listen(port, () => {
     console.log(`App listening on port ${port}`);
