@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useContext } from "react";
+import { ProviderFunction } from "../App";
 
 export default function SearchBar( { colorScheme } ) {
+    const { fetchTweetData } = useContext(ProviderFunction);
     const [ inputText, setInputText ] = useState('');
 
     function inputHandler(e) {
@@ -19,6 +22,10 @@ export default function SearchBar( { colorScheme } ) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({parcel: inputText})
+        }).then((res) => {
+            if (res.ok) {
+                fetchTweetData();
+            }
         })
     }
 

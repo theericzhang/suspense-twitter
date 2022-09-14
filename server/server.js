@@ -16,6 +16,13 @@ app.get("/", (req, res) => {
     res.send("Hello World!");
 });
 
+// create a main Twitter client with our Bearer Token
+const clientMain = new TwitterApi(process.env.BEARER_TOKEN);
+const numberOfTweetsToFetch = 10;
+
+// set this client to read-only since we are only pulling information from the API
+const roClient = clientMain.readOnly;
+
 let usernameQuery = "anericzhang";
 
 app.post("/search", (req, res) => {
@@ -26,6 +33,7 @@ app.post("/search", (req, res) => {
     } else {
         res.status(200).send({ status: 'received' })
         usernameQuery = parcel;
+        
     }
     
 })
@@ -33,15 +41,6 @@ app.post("/search", (req, res) => {
 app.listen(port, () => {
     console.log(`App listening on port ${port}`);
 });
-
-// create a main Twitter client with our Bearer Token
-const clientMain = new TwitterApi(process.env.BEARER_TOKEN);
-
-const numberOfTweetsToFetch = 10;
-
-
-// set this client to read-only since we are only pulling information from the API
-const roClient = clientMain.readOnly;
 
 // identify a user to pull data from (me)
 const user = await roClient.v2.usersByUsernames(usernameQuery);
@@ -52,7 +51,7 @@ if (user?.hasOwnProperty("errors")) {
         res.status(500).json({
             message: `Could not find user ${usernameQuery}, please try searching again`
         });
-    })
+    });
 } else {
     console.log(user);
     const myTwitterId = user?.data[0]?.id;
