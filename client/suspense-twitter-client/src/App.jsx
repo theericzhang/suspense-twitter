@@ -96,9 +96,7 @@ function App() {
     // User types new query 
     // Submit handler takes input, FETCHes it to localhost:5000/search with POST header
     // After Fetch/POST, then perform a new fetch using the fetchTweetData() setter
-    const providerFunction = {
-        tweetData, fetchTweetData
-    };
+    const providerFunction = { fetchTweetData };
 
     useEffect(() => {
         fetchTweetData();

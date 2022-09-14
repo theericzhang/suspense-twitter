@@ -51,7 +51,7 @@ if (user?.hasOwnProperty("errors")) {
         res.status(500).json({
             message: `Could not find user ${usernameQuery}, please try searching again`
         });
-    })
+    });
 } else {
     console.log(user);
     const myTwitterId = user?.data[0]?.id;

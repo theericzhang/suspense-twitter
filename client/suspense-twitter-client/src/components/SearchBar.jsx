@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { ProviderFunction } from "../App";
 
 export default function SearchBar( { colorScheme } ) {
-    const { tweetData, fetchTweetData } = useContext(ProviderFunction);
+    const { fetchTweetData } = useContext(ProviderFunction);
     const [ inputText, setInputText ] = useState('');
 
     function inputHandler(e) {
