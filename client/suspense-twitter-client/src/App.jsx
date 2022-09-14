@@ -8,6 +8,7 @@ import Tweet from "./components/Tweet";
 export const ColorSchemeContext = createContext();
 export const TweetComponentArrayContext = createContext();
 export const ErrorMessageContext = createContext();
+export const ProviderFunction = createContext();
 
 function App() {
 
@@ -43,6 +44,7 @@ function App() {
     const [ errorMessage, setErrorMessage ] = useState(null);
     
     async function fetchTweetData() {
+        console.log("hey babe i'm logging rn");
         const res = await fetch('http://localhost:5000/tweets');
         if (!res.ok) {
             console.log(res); // returns response with status code
@@ -89,6 +91,15 @@ function App() {
 
     }
 
+    // put the fetchTweetData() function into an object, providerFunction to pass as context
+    // fetchTweetData() needs to be called in SearchBar.jsx when the user enters a search query.
+    // User types new query 
+    // Submit handler takes input, FETCHes it to localhost:5000/search with POST header
+    // After Fetch/POST, then perform a new fetch using the fetchTweetData() setter
+    const providerFunction = {
+        tweetData, fetchTweetData
+    };
+
     useEffect(() => {
         fetchTweetData();
         // To fetch again after data has been updated by user in search bar,
@@ -134,7 +145,9 @@ function App() {
                     <Toggle colorScheme={colorScheme} 
                             setColorScheme={setColorScheme}
                     />
-                    <SearchBar colorScheme={colorScheme}/>
+                    <ProviderFunction.Provider value={providerFunction}> 
+                        <SearchBar colorScheme={colorScheme}/>
+                    </ProviderFunction.Provider>
                 </div>
             </div>
         </ColorSchemeContext.Provider>
