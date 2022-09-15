@@ -53,8 +53,8 @@ function App() {
             setErrorMessage(await responseError);
         }
         const data = await res.json();
-        setTweetData(data);
-        console.log(data);
+        setTweetData(await data);
+        console.log(await data);
 
         // try catchh block attempt at error handling
         // erroneous behavior - breaks rule of hooks. caught error will display rule of hooks error

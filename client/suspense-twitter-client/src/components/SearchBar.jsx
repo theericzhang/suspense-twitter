@@ -24,10 +24,12 @@ export default function SearchBar( { colorScheme } ) {
                 body: JSON.stringify({parcel: inputText})
             }).then((res) => {
                 if (res.ok) {
-                    setTimeout(() => {
-                        console.log("Supposed to fetch here");
-                        fetchTweetData(inputText);
-                    }, 2000)
+                    console.log("Supposed to fetch here");
+                    fetchTweetData(inputText);
+                    // setTimeout(() => {
+                    //     console.log("Supposed to fetch here");
+                    //     fetchTweetData(inputText);
+                    // }, 2000)
                 }
             });
         } else {
