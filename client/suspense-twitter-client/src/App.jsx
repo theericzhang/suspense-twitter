@@ -43,9 +43,9 @@ function App() {
     const [ tweetData, setTweetData ] = useState({});
     const [ errorMessage, setErrorMessage ] = useState(null);
     
-    async function fetchTweetData() {
+    async function fetchTweetData(usernameQuery) {
         console.log("hey babe i'm logging rn");
-        const res = await fetch('http://localhost:5000/tweets');
+        const res = await fetch(`http://localhost:5000/tweets/${usernameQuery}`);
         if (!res.ok) {
             console.log(res); // returns response with status code
             const responseError = await res.json();
@@ -99,7 +99,7 @@ function App() {
     const providerFunction = { fetchTweetData };
 
     useEffect(() => {
-        fetchTweetData();
+        fetchTweetData('POTUS');
         // To fetch again after data has been updated by user in search bar,
         // try passing the fetchTweetData(); function as a prop to the search bar class
         // then call the function after the post request has been made

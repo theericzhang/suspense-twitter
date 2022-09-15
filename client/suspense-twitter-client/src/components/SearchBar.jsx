@@ -15,18 +15,26 @@ export default function SearchBar( { colorScheme } ) {
         // submit request to server side?
         e.preventDefault();
         console.log('payload: ', inputText);
+        if (!!inputText) {
+            fetch('http://localhost:5000/search', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({parcel: inputText})
+            }).then((res) => {
+                if (res.ok) {
+                    setTimeout(() => {
+                        console.log("Supposed to fetch here");
+                        fetchTweetData(inputText);
+                    }, 2000)
+                }
+            });
+        } else {
+            console.log('invalid input');
+            //. handle errors here?
+        }
 
-        fetch('http://localhost:5000/search', {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({parcel: inputText})
-        }).then((res) => {
-            if (res.ok) {
-                fetchTweetData();
-            }
-        })
     }
 
     return (
