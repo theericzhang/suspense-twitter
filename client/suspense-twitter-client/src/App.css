@@ -130,6 +130,27 @@
     /* margin-left: 16px; */
 }
 
+.loading {
+    background-color: #F0F3F4;
+    background: #f6f7f8;
+    background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+    background-repeat: no-repeat;
+    background-size: 800px 265px; 
+    display: inline-block;
+    position: relative; 
+    
+
+    animation-duration: 0.9s;
+    animation-fill-mode: forwards; 
+    animation-iteration-count: infinite;
+    animation-name: placeholderShimmer;
+    animation-timing-function: linear;
+}
+
+#dark-loading {
+    background-color: #425166;
+}
+
 .tweet-body {
     width: 530px;
     display: flex;
@@ -155,6 +176,26 @@
     flex-direction: row;
     margin-bottom: 4px;
     align-items: center;
+}
+
+.meta-info-shimmer {
+    width: 265px;
+    height: 14px;
+    border-radius: 7px;
+    background-color: #F0F3F4;
+    background: #f6f7f8;
+    background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+    background-repeat: no-repeat;
+    background-size: 800px 265px; 
+    display: inline-block;
+    position: relative; 
+    
+
+    animation-duration: 0.9s;
+    animation-fill-mode: forwards; 
+    animation-iteration-count: infinite;
+    animation-name: placeholderShimmer;
+    animation-timing-function: linear;
 }
 
 .display-name {
@@ -235,6 +276,55 @@
 
 #dark-tweet-body-text {
     color: rgb(247, 249, 249);
+}
+
+.body-text-shimmer-wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    padding-top: 15px;
+}
+
+.body-text-shimmer-full {
+    width: 490px;
+    height: 14px;
+    background-color: #F0F3F4;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
+    background: #f6f7f8;
+    background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+    background-repeat: no-repeat;
+    background-size: 800px 265px; 
+    display: inline-block;
+    position: relative; 
+    
+
+    animation-duration: 0.9s;
+    animation-fill-mode: forwards; 
+    animation-iteration-count: infinite;
+    animation-name: placeholderShimmer;
+    animation-timing-function: linear;
+}
+
+.body-text-shimmer-fraction {
+    width: 166px;
+    height: 14px;
+    background-color: #F0F3F4;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
+    background: #f6f7f8;
+    background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+    background-repeat: no-repeat;
+    background-size: 800px 265px; 
+    display: inline-block;
+    position: relative; 
+    
+
+    animation-duration: 0.9s;
+    animation-fill-mode: forwards; 
+    animation-iteration-count: infinite;
+    animation-name: placeholderShimmer;
+    animation-timing-function: linear;
 }
 
 .tweet-body-media-wrapper {
@@ -324,6 +414,38 @@
 #darkened {
     filter: brightness(30%);
 }
+
+.body-media-wrapper-shimmer {
+    width: 490px;
+    height: 265px;
+    background-color: #F0F3F4;
+    border-radius: 14px;
+    margin-top: 15px;
+    margin-bottom: 7px;
+    background: #f6f7f8;
+    background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+    background-repeat: no-repeat;
+    background-size: 800px 265px; 
+    display: inline-block;
+    position: relative; 
+    
+
+    animation-duration: 0.9s;
+    animation-fill-mode: forwards; 
+    animation-iteration-count: infinite;
+    animation-name: placeholderShimmer;
+    animation-timing-function: linear;
+}
+
+@keyframes placeholderShimmer {
+    0% {
+      background-position: -468px 0;
+    }
+    
+    100% {
+      background-position: 468px 0; 
+    }
+  }
 
 .tweet-actions {
     display: flex;
@@ -452,6 +574,26 @@
     fill:#6E767D;
     transition: fill cubic-bezier(0.075, 0.82, 0.165, 1);
     transition-duration: 1.5s;
+}
+
+.action-wrapper-shimmer {
+    height: 14px;
+    width: 53px;
+    background-color: #F0F3F4;
+    margin-left: 20px;
+    background: #f6f7f8;
+    background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+    background-repeat: no-repeat;
+    background-size: 800px 265px; 
+    display: inline-block;
+    position: relative; 
+    
+
+    animation-duration: 0.9s;
+    animation-fill-mode: forwards; 
+    animation-iteration-count: infinite;
+    animation-name: placeholderShimmer;
+    animation-timing-function: linear;
 }
 
 .tweet-divider {

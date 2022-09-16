@@ -9,6 +9,7 @@ export const ColorSchemeContext = createContext();
 export const TweetComponentArrayContext = createContext();
 export const ErrorMessageContext = createContext();
 export const ProviderFunction = createContext();
+export const IsTweetLoadingContext = createContext();
 
 function App() {
 
@@ -38,6 +39,9 @@ function App() {
         document.body.style.backgroundColor = "#FFFFFF";
     }
 
+    // loading state
+    const [ isTweetLoading, setIsTweetLoading ] = useState(true);
+
     // data
 
     const [ tweetData, setTweetData ] = useState({});
@@ -54,41 +58,8 @@ function App() {
         }
         const data = await res.json();
         setTweetData(await data);
+        setIsTweetLoading(false);
         console.log(await data);
-
-        // try catchh block attempt at error handling
-        // erroneous behavior - breaks rule of hooks. caught error will display rule of hooks error
-
-        // try {
-        //     const res = await fetch('http://localhost:5000/tweets');
-        //     if (!res.ok) {
-        //         console.log(res); // returns response with status code
-        //         const responseError = await res.json();
-        //         // returns server side generated error, e.g. 'could not find user'
-        //         setErrorMessage(await responseError);
-        //         throw new Error(responseError);
-        //     }
-        //     const data = await res.json();
-        //     setTweetData(data);
-        //     console.log(data);
-        // } catch (error) {
-        //     console.error(error);
-        // }
-
-
-        // fetch('http://localhost:5000/tweets')
-        // .then((res) => {
-        //     if (!res.ok) {
-        //         const responseError = res.json();
-        //         setErrorMessage(responseError);
-        //         throw new Error('responseError');
-        //     }
-        //     const data = res.json();
-        //     setTweetData(data);
-        // }).catch(err => {
-        //     console.error(err);
-        // })
-
     }
 
     // put the fetchTweetData() function into an object, providerFunction to pass as context
@@ -136,7 +107,9 @@ function App() {
                 <div className="sidebar-column-left"></div>
                 <TweetComponentArrayContext.Provider value={tweetComponentArray}>
                     <ErrorMessageContext.Provider value={errorMessage}>
-                        <AppFrame />
+                        <IsTweetLoadingContext.Provider value={isTweetLoading}>
+                            <AppFrame />
+                        </IsTweetLoadingContext.Provider>
                     </ErrorMessageContext.Provider>
                 </TweetComponentArrayContext.Provider>
                 <div className="sidebar-column-right">
@@ -144,7 +117,9 @@ function App() {
                             setColorScheme={setColorScheme}
                     />
                     <ProviderFunction.Provider value={providerFunction}> 
-                        <SearchBar colorScheme={colorScheme}/>
+                        <SearchBar colorScheme={colorScheme}
+                                   setIsTweetLoading={setIsTweetLoading}
+                        />
                     </ProviderFunction.Provider>
                 </div>
             </div>

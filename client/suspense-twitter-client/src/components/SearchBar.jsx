@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { useContext } from "react";
 import { ProviderFunction } from "../App";
 
-export default function SearchBar( { colorScheme } ) {
+export default function SearchBar( { colorScheme,
+                                     setIsTweetLoading
+                                   } ) 
+{
     const { fetchTweetData } = useContext(ProviderFunction);
     const [ inputText, setInputText ] = useState('');
 
@@ -25,11 +28,13 @@ export default function SearchBar( { colorScheme } ) {
             }).then((res) => {
                 if (res.ok) {
                     console.log("Supposed to fetch here");
-                    fetchTweetData(inputText);
-                    // setTimeout(() => {
-                    //     console.log("Supposed to fetch here");
-                    //     fetchTweetData(inputText);
-                    // }, 2000)
+                    setIsTweetLoading(true);
+                    // fetchTweetData(inputText);
+                    setTimeout(() => {
+                        console.log("Supposed to fetch here");
+                        fetchTweetData(inputText);
+                        setInputText('');
+                    }, 2000)
                 }
             });
         } else {
@@ -48,6 +53,7 @@ export default function SearchBar( { colorScheme } ) {
                         value={inputText} 
                         onChange={(e) => inputHandler(e)}
                         placeholder="Search Twitter Users"
+                        spellCheck="false"
                         id={colorScheme === 'light' ? '' : 'search-bar-dark'}
                     />
                 </form>
