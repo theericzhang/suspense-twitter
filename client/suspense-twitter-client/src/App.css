@@ -642,7 +642,7 @@
     align-items: center;
     width: 80px;
     height: 36px;
-    background-color: #e5e8e9;
+    background-color: #F0F3F4;
     position: relative;
     border-radius: 30px;
     /* top: 40px;
@@ -714,12 +714,16 @@
     padding-left: 58px;
     font-family: TwitterChirp;
     font-size: 16px;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
 }
 
 #search-bar-dark {
     background-color: #273340;
     caret-color: #FFFFFF;
     color: #FFFFFF;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
 }
 
 #search-bar-dark::placeholder {
