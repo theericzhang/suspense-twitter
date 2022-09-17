@@ -149,6 +149,12 @@
 
 #dark-loading {
     background-color: #425166;
+    background: #425166;
+    background-image: linear-gradient(to right, #425166 0%, #4c5d74 20%, #425166 40%, #425166 100%);
+    background-repeat: no-repeat;
+    background-size: 800px 265px; 
+    display: inline-block;
+    position: relative; 
 }
 
 .tweet-body {

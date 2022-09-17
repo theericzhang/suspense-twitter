@@ -11,7 +11,7 @@ export default function SearchBar( { colorScheme,
 
     function inputHandler(e) {
         setInputText(e.target.value);
-        console.log(inputText);
+        console.log(e.target.value);
     }
 
     function submitHandler(e) {
