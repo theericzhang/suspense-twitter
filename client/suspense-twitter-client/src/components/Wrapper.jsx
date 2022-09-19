@@ -14,7 +14,12 @@ export default function Wrapper() {
     const isTweetLoading = useContext(IsTweetLoadingContext);
     console.log(tweetComponentArray);
 
-    const tweetShimmerComponentArray = Array(5).fill(<ShimmerTweet colorScheme={colorScheme}/>)
+    const tweetShimmerComponentArray = Array(5).fill(1).map((tweetShimmer, index) => {
+                                                                return (
+                                                                    <ShimmerTweet colorScheme={colorScheme}
+                                                                                key={index}/>
+                                                                )}
+    )
     
     return (
         <section className="wrapper" id={colorScheme === 'light' ? '' : 'dark-wrapper'}>

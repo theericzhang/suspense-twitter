@@ -78,29 +78,29 @@ export default function Tweet( { text,
     let photoLayout;
     switch (mediaArray?.length) {
         case 1:
-            photoLayout = <img src={hasMediaUrl && mediaArray?.[0]?.url} alt="" className="tweet-body-media" />
+            photoLayout = <img src={hasMediaUrl && mediaArray?.[0]?.url || undefined} alt="" className="tweet-body-media" />
             break;
         case 2:
             photoLayout = <div className="tweet-body-media-two-column-layout">
                               <div className="tweet-body-media-half-wrapper">
-                                  <img src={hasMediaUrl && mediaArray?.[0]?.url} alt="" className="tweet-body-media-half" />
+                                  <img src={hasMediaUrl && mediaArray?.[0]?.url || undefined} alt="" className="tweet-body-media-half" />
                               </div>
                               <div className="tweet-body-media-half-wrapper">
-                                  <img src={hasMediaUrl && mediaArray?.[1]?.url} alt="" className="tweet-body-media-half" />
+                                  <img src={hasMediaUrl && mediaArray?.[1]?.url || undefined} alt="" className="tweet-body-media-half" />
                               </div>
                           </div>;
             break;
         case 3:
             photoLayout = <div className="tweet-body-media-two-column-layout">
                               <div className="tweet-body-media-half-wrapper">
-                                  <img src={hasMediaUrl && mediaArray?.[0]?.url} alt="" className="tweet-body-media-half" />
+                                  <img src={hasMediaUrl && mediaArray?.[0]?.url || undefined} alt="" className="tweet-body-media-half" />
                               </div>
                               <div className="tweet-body-media-two-quarters-photo-layout">
                                   <div className="tweet-body-media-quarter-wrapper">
-                                      <img src={hasMediaUrl && mediaArray?.[1]?.url} alt="" className="tweet-body-media-quarter" />   
+                                      <img src={hasMediaUrl && mediaArray?.[1]?.url || undefined} alt="" className="tweet-body-media-quarter" />   
                                   </div>
                                   <div className="tweet-body-media-quarter-wrapper">
-                                      <img src={hasMediaUrl && mediaArray?.[2]?.url} alt="" className="tweet-body-media-quarter" />   
+                                      <img src={hasMediaUrl && mediaArray?.[2]?.url || undefined} alt="" className="tweet-body-media-quarter" />   
                                   </div>
                               </div>
                           </div>;
@@ -109,18 +109,18 @@ export default function Tweet( { text,
             photoLayout = <div className="tweet-body-media-two-column-layout">
                                <div className="tweet-body-media-two-quarters-photo-layout">
                                    <div className="tweet-body-media-quarter-wrapper">
-                                       <img src={hasMediaUrl && mediaArray?.[0]?.url} alt="" className="tweet-body-media-quarter" />   
+                                       <img src={hasMediaUrl && mediaArray?.[0]?.url || undefined} alt="" className="tweet-body-media-quarter" />   
                                    </div>
                                    <div className="tweet-body-media-quarter-wrapper">
-                                       <img src={hasMediaUrl && mediaArray?.[1]?.url} alt="" className="tweet-body-media-quarter" />   
+                                       <img src={hasMediaUrl && mediaArray?.[1]?.url || undefined} alt="" className="tweet-body-media-quarter" />   
                                    </div>
                                 </div>
                                <div className="tweet-body-media-two-quarters-photo-layout">
                                    <div className="tweet-body-media-quarter-wrapper">
-                                       <img src={hasMediaUrl && mediaArray?.[2]?.url} alt="" className="tweet-body-media-quarter" />   
+                                       <img src={hasMediaUrl && mediaArray?.[2]?.url || undefined} alt="" className="tweet-body-media-quarter" />   
                                    </div>
                                    <div className="tweet-body-media-quarter-wrapper">
-                                       <img src={hasMediaUrl && mediaArray?.[3]?.url} alt="" className="tweet-body-media-quarter" />   
+                                       <img src={hasMediaUrl && mediaArray?.[3]?.url || undefined} alt="" className="tweet-body-media-quarter" />   
                                    </div>
                                 </div>
                            </div>;
