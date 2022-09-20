@@ -45,7 +45,7 @@ async function fetchingTweets(usernameQuery) {
     if (user?.hasOwnProperty("errors")) {
         console.log(`Could not find user ${usernameQuery}`);
         console.error(`Could not find user ${usernameQuery}`);
-        app.get("/tweets", (req, res) => {
+        app.get(`/tweets/${usernameQuery}`, (req, res) => {
             res.status(500).json({
                 message: `Could not find user ${usernameQuery}, please try searching again`
             });

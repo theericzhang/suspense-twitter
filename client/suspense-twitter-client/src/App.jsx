@@ -49,17 +49,29 @@ function App() {
     
     async function fetchTweetData(usernameQuery) {
         console.log("hey babe i'm logging rn");
-        const res = await fetch(`http://localhost:5000/tweets/${usernameQuery}`);
-        if (!res.ok) {
-            console.log(res); // returns response with status code
-            const responseError = await res.json();
-            // returns server side generated error, e.g. 'could not find user'
-            setErrorMessage(await responseError);
+        // resetting error message to a falsy value 
+        // user tries looking for a nonexistent user, the error message is set
+        // user queries another user, but the message needs to be reset to make the && shortcircuit false
+        setErrorMessage(null);
+        try {
+            const res = await fetch(`http://localhost:5000/tweets/${usernameQuery}`);
+            if (!res.ok) {
+                console.log(res); // returns response with status code
+                setTweetData(null);
+                setIsTweetLoading(false);
+                console.log('should have set to false');
+                setErrorMessage(await res.json());
+                // throw new Error('')
+                // returns server side generated error, e.g. 'could not find user'
+            } else {
+                const data = await res.json();
+                setTweetData(await data);
+                setIsTweetLoading(false);
+                console.log(await data);
+            }
+        } catch (e) {
+            console.log(e);
         }
-        const data = await res.json();
-        setTweetData(await data);
-        setIsTweetLoading(false);
-        console.log(await data);
     }
 
     // put the fetchTweetData() function into an object, providerFunction to pass as context

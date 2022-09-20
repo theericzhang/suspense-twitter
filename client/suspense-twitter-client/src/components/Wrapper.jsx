@@ -1,5 +1,4 @@
-import { React, useState, useEffect, useContext } from "react";
-import Tweet from "./Tweet";
+import { React, useContext } from "react";
 import Error from "./Error";
 import ShimmerTweet from "./ShimmerTweet";
 import { ColorSchemeContext } from "../App";
@@ -26,6 +25,8 @@ export default function Wrapper() {
             {errorMessage && <Error message={errorMessage.message} /> }
             {/* {<ShimmerTweet colorScheme={colorScheme}/>} */}
             {isTweetLoading ? tweetShimmerComponentArray : tweetComponentArray}
+            {/* isTweetLoading only handles fetching - we need to load the images into the browser before we can release the shimmer effect */}
+            {/* {isTweetLoading && isImageLoaded ? tweetShimmerComponentArray : tweetComponentArray} */}
             {/* {!isTweetLoading ? tweetShimmerComponentArray : ''} */}
         </section>
     )
