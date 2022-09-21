@@ -753,7 +753,10 @@
 }
 
 .error-wrapper {
-    height: 150px;
+    min-height: 150px;
+    padding: 0 20px;
+    margin: 20px 0;
+    text-align: left;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -769,4 +772,5 @@
     color: #536471;
     transition: cubic-bezier(0.075, 0.82, 0.165, 1);
     transition-duration: 1s;
+    white-space: pre-line;
 }

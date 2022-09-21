@@ -10,6 +10,7 @@ export const TweetComponentArrayContext = createContext();
 export const ErrorMessageContext = createContext();
 export const ProviderFunction = createContext();
 export const IsTweetLoadingContext = createContext();
+export const SetTweetDataContext = createContext();
 
 function App() {
 
@@ -44,7 +45,7 @@ function App() {
 
     // data
     const [ tweetData, setTweetData ] = useState({});
-    const [ errorMessage, setErrorMessage ] = useState(null);
+    const [ errorMessage, setErrorMessage ] = useState('');
 
     const errorMessageObject = { errorMessage, setErrorMessage };
     
@@ -129,9 +130,11 @@ function App() {
                                 setColorScheme={setColorScheme}
                                 />
                         <ProviderFunction.Provider value={providerFunction}> 
-                            <SearchBar colorScheme={colorScheme}
-                                    setIsTweetLoading={setIsTweetLoading}
-                                    />
+                            <SetTweetDataContext.Provider value={setTweetData}>
+                                <SearchBar colorScheme={colorScheme}
+                                        setIsTweetLoading={setIsTweetLoading}
+                                        />
+                            </SetTweetDataContext.Provider>
                         </ProviderFunction.Provider>
                     </div>
                 </ErrorMessageContext.Provider>

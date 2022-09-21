@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useContext } from "react";
 import { ProviderFunction } from "../App";
 import { ErrorMessageContext } from "../App";
+import { SetTweetDataContext } from "../App";
 
 export default function SearchBar( { colorScheme,
                                      setIsTweetLoading
@@ -10,6 +11,7 @@ export default function SearchBar( { colorScheme,
     const { fetchTweetData } = useContext(ProviderFunction);
     const [ inputText, setInputText ] = useState('');
     const { errorMessage, setErrorMessage } = useContext(ErrorMessageContext);
+    const setTweetData = useContext(SetTweetDataContext);
 
     function inputHandler(e) {
         setInputText(e.target.value);
@@ -21,7 +23,11 @@ export default function SearchBar( { colorScheme,
         e.preventDefault();
         console.log('payload: ', inputText);
         setErrorMessage('');
-        if (!!inputText) {
+
+        // validate input? 
+        // check for regex ^[A-Za-z0-9_]{1,15}$
+        const isValidExpression = /^[A-Za-z0-9_]{1,15}$/.test(inputText);
+        if (!!inputText && isValidExpression) {
             fetch('http://localhost:5000/search', {
                 method: "POST",
                 headers: {
@@ -40,7 +46,20 @@ export default function SearchBar( { colorScheme,
                     }, 2000)
                 }
             });
-        } else {
+        } 
+        // handling the case where inputText is truthy but it fails expression test
+        // we have to handle error here otherwise node will close the connection if we try to fetch with inputText
+        else if (!!inputText && !isValidExpression) {
+            setErrorMessage(
+                {
+                    message: `Could not find user ${inputText}. \n
+                    Twitter usernames cannot be longer than 15 characters and can only contain alphanumeric characters (letters A-Z, numbers 0-9) with the exception of underscores. \n
+                    Check to make sure your desired username doesn't contain any symbols, dashes, or spaces.`
+                }
+            );
+            setTweetData({});
+        }
+        else {
             console.log('invalid input');
             //. handle errors here?
         }
