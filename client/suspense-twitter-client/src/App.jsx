@@ -43,16 +43,17 @@ function App() {
     const [ isTweetLoading, setIsTweetLoading ] = useState(true);
 
     // data
-
     const [ tweetData, setTweetData ] = useState({});
     const [ errorMessage, setErrorMessage ] = useState(null);
+
+    const errorMessageObject = { errorMessage, setErrorMessage };
     
     async function fetchTweetData(usernameQuery) {
         console.log("hey babe i'm logging rn");
         // resetting error message to a falsy value 
         // user tries looking for a nonexistent user, the error message is set
         // user queries another user, but the message needs to be reset to make the && shortcircuit false
-        setErrorMessage(null);
+        setErrorMessage('');
         try {
             const res = await fetch(`http://localhost:5000/tweets/${usernameQuery}`);
             if (!res.ok) {
@@ -117,23 +118,23 @@ function App() {
         <ColorSchemeContext.Provider value={colorScheme}>
             <div className="App" id={colorScheme === 'light' ? '' : 'dark'}>
                 <div className="sidebar-column-left"></div>
-                <TweetComponentArrayContext.Provider value={tweetComponentArray}>
-                    <ErrorMessageContext.Provider value={errorMessage}>
-                        <IsTweetLoadingContext.Provider value={isTweetLoading}>
-                            <AppFrame />
-                        </IsTweetLoadingContext.Provider>
-                    </ErrorMessageContext.Provider>
-                </TweetComponentArrayContext.Provider>
-                <div className="sidebar-column-right">
-                    <Toggle colorScheme={colorScheme} 
-                            setColorScheme={setColorScheme}
-                    />
-                    <ProviderFunction.Provider value={providerFunction}> 
-                        <SearchBar colorScheme={colorScheme}
-                                   setIsTweetLoading={setIsTweetLoading}
-                        />
-                    </ProviderFunction.Provider>
-                </div>
+                <ErrorMessageContext.Provider value={{errorMessage, setErrorMessage}}>
+                    <TweetComponentArrayContext.Provider value={tweetComponentArray}>
+                            <IsTweetLoadingContext.Provider value={isTweetLoading}>
+                                <AppFrame />
+                            </IsTweetLoadingContext.Provider>
+                    </TweetComponentArrayContext.Provider>
+                    <div className="sidebar-column-right">
+                        <Toggle colorScheme={colorScheme} 
+                                setColorScheme={setColorScheme}
+                                />
+                        <ProviderFunction.Provider value={providerFunction}> 
+                            <SearchBar colorScheme={colorScheme}
+                                    setIsTweetLoading={setIsTweetLoading}
+                                    />
+                        </ProviderFunction.Provider>
+                    </div>
+                </ErrorMessageContext.Provider>
             </div>
         </ColorSchemeContext.Provider>
     );

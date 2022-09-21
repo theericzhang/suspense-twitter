@@ -9,7 +9,10 @@ import { IsTweetLoadingContext } from "../App";
 export default function Wrapper() {
     const colorScheme = useContext(ColorSchemeContext);
     const tweetComponentArray = useContext(TweetComponentArrayContext);
-    const errorMessage = useContext(ErrorMessageContext);
+
+    // destructuring the errorMessage state - bear in mind that errorMessage is 
+    // an object containing a message property... 
+    const { errorMessage, setErrorMessage } = useContext(ErrorMessageContext);
     const isTweetLoading = useContext(IsTweetLoadingContext);
     console.log(tweetComponentArray);
 

@@ -180,7 +180,7 @@ export default function Tweet( { text,
                                           {isMediaTypePhoto ? photoLayout 
                                                             : <div className="tweet-body-media-warning">
                                                                   <h5 className="tweet-body-media-warning-text">Due to the limitations of Twitter-API-v2, this {mediaArray?.[0]?.type} cannot be played</h5>
-                                                                  <img src={hasPreviewMediaUrl && mediaArray?.[0]?.preview_image_url} alt="" className="tweet-body-media" id="darkened"/>
+                                                                  <img src={hasPreviewMediaUrl && mediaArray?.[0]?.preview_image_url || undefined} alt="" className="tweet-body-media" id="darkened"/>
                                                               </div>
                                           }
                                       </div>
