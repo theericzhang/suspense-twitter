@@ -23,7 +23,7 @@ const numberOfTweetsToFetch = 5;
 // set this client to read-only since we are only pulling information from the API
 const roClient = clientMain.readOnly;
 
-let usernameQuery = "POTUS";
+let usernameQuery = "ennntropy";
 
 app.post("/search", (req, res) => {
     const { parcel } = req.body;
@@ -185,29 +185,19 @@ async function fetchingTweets(usernameQuery) {
             myUserProfileData: myUserProfileData,
         };
 
-        // console.log(myTimelineTweetDataObject);
+        if (myTimelineTweetData.length === 0) {
+            app.get(`/tweets/${usernameQuery}`, (req, res) => {
+                res.status(500).json({
+                    message: `${usernameQuery} has no tweets`
+                });
+            });
+            return;
+        }
 
         getUser(myTimelineTweetDataObject, usernameQuery);
         console.log("should have updated: ", usernameQuery);
         return;
-        // app.get("/tweets", (_, res) => {
-        //     res.json({ ok: true, myTimelineTweetDataObject });
-        // });
-
-        // console.log('the tweet object', myTimelineTweetDataObject);
-
-        //   for await (const tweet of myTimeline) {
-        //     console.log("the tweet: ", tweet);
-        //     const medias = myTimeline.includes.medias(tweet);
-        //     const poll = myTimeline.includes.poll(tweet);
-
-        //     if (medias.length) {
-        //       console.log('This tweet contains medias! URLs:', medias.map(m => m.url));
-        //     }
-        //     if (poll) {
-        //       console.log('This tweet contains a poll! Options:', poll.options.map(opt => opt.label));
-        //     }
-        //   }
+        
     }}
 
 function getUser(myTimelineTweetDataObject, usernameQuery) {
