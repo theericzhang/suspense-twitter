@@ -50,18 +50,21 @@ export default function SearchBar( { colorScheme,
         // handling the case where inputText is truthy but it fails expression test
         // we have to handle error here otherwise node will close the connection if we try to fetch with inputText
         else if (!!inputText && !isValidExpression) {
-            setErrorMessage(
-                {
-                    message: `Could not find user ${inputText}. \n
-                    Twitter usernames cannot be longer than 15 characters and can only contain alphanumeric characters (letters A-Z, numbers 0-9) with the exception of underscores. \n
-                    Check to make sure your desired username doesn't contain any symbols, dashes, or spaces.`
-                }
-            );
-            setTweetData({});
-        }
-        else {
-            console.log('invalid input');
-            //. handle errors here?
+            setIsTweetLoading(true);
+            setTimeout(() => {
+                setTweetData({});
+                setIsTweetLoading(false);
+                setErrorMessage(
+                    {
+                        message: `Could not find user ${inputText}. \n
+                        Twitter usernames cannot be longer than 15 characters and can only contain alphanumeric characters (letters A-Z, numbers 0-9) with the exception of underscores. \n
+                        Check to make sure your desired username doesn't contain any symbols, dashes, or spaces.`
+                    }
+                );
+            }, 500);
+        } else {
+            // do nothing
+            // if input field is empty, don't do anything on submit
         }
 
     }
