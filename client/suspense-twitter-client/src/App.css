@@ -37,9 +37,9 @@
 .App {
     padding: 40px 0;
     width: 100vw;
+    min-height: calc(100vh - 80px);
     display: flex;
     justify-content: center;
-    align-items: center;
     position: relative;
     transition: cubic-bezier(0.075, 0.82, 0.165, 1);
     transition-duration: 1s;
@@ -59,7 +59,7 @@
 .app-frame {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
 }
 
@@ -130,6 +130,33 @@
     /* margin-left: 16px; */
 }
 
+.loading {
+    background-color: #F0F3F4;
+    background: #f6f7f8;
+    background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+    background-repeat: no-repeat;
+    background-size: 800px 265px; 
+    display: inline-block;
+    position: relative; 
+    
+
+    animation-duration: 0.9s;
+    animation-fill-mode: forwards; 
+    animation-iteration-count: infinite;
+    animation-name: placeholderShimmer;
+    animation-timing-function: linear;
+}
+
+#dark-loading {
+    background-color: #425166;
+    background: #425166;
+    background-image: linear-gradient(to right, #425166 0%, #4c5d74 20%, #425166 40%, #425166 100%);
+    background-repeat: no-repeat;
+    background-size: 800px 265px; 
+    display: inline-block;
+    position: relative; 
+}
+
 .tweet-body {
     width: 530px;
     display: flex;
@@ -155,6 +182,26 @@
     flex-direction: row;
     margin-bottom: 4px;
     align-items: center;
+}
+
+.meta-info-shimmer {
+    width: 265px;
+    height: 14px;
+    border-radius: 7px;
+    background-color: #F0F3F4;
+    background: #f6f7f8;
+    background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+    background-repeat: no-repeat;
+    background-size: 800px 265px; 
+    display: inline-block;
+    position: relative; 
+    
+
+    animation-duration: 0.9s;
+    animation-fill-mode: forwards; 
+    animation-iteration-count: infinite;
+    animation-name: placeholderShimmer;
+    animation-timing-function: linear;
 }
 
 .display-name {
@@ -235,6 +282,55 @@
 
 #dark-tweet-body-text {
     color: rgb(247, 249, 249);
+}
+
+.body-text-shimmer-wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    padding-top: 15px;
+}
+
+.body-text-shimmer-full {
+    width: 490px;
+    height: 14px;
+    background-color: #F0F3F4;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
+    background: #f6f7f8;
+    background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+    background-repeat: no-repeat;
+    background-size: 800px 265px; 
+    display: inline-block;
+    position: relative; 
+    
+
+    animation-duration: 0.9s;
+    animation-fill-mode: forwards; 
+    animation-iteration-count: infinite;
+    animation-name: placeholderShimmer;
+    animation-timing-function: linear;
+}
+
+.body-text-shimmer-fraction {
+    width: 166px;
+    height: 14px;
+    background-color: #F0F3F4;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
+    background: #f6f7f8;
+    background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+    background-repeat: no-repeat;
+    background-size: 800px 265px; 
+    display: inline-block;
+    position: relative; 
+    
+
+    animation-duration: 0.9s;
+    animation-fill-mode: forwards; 
+    animation-iteration-count: infinite;
+    animation-name: placeholderShimmer;
+    animation-timing-function: linear;
 }
 
 .tweet-body-media-wrapper {
@@ -324,6 +420,38 @@
 #darkened {
     filter: brightness(30%);
 }
+
+.body-media-wrapper-shimmer {
+    width: 490px;
+    height: 265px;
+    background-color: #F0F3F4;
+    border-radius: 14px;
+    margin-top: 15px;
+    margin-bottom: 7px;
+    background: #f6f7f8;
+    background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+    background-repeat: no-repeat;
+    background-size: 800px 265px; 
+    display: inline-block;
+    position: relative; 
+    
+
+    animation-duration: 0.9s;
+    animation-fill-mode: forwards; 
+    animation-iteration-count: infinite;
+    animation-name: placeholderShimmer;
+    animation-timing-function: linear;
+}
+
+@keyframes placeholderShimmer {
+    0% {
+      background-position: -468px 0;
+    }
+    
+    100% {
+      background-position: 468px 0; 
+    }
+  }
 
 .tweet-actions {
     display: flex;
@@ -454,6 +582,26 @@
     transition-duration: 1.5s;
 }
 
+.action-wrapper-shimmer {
+    height: 14px;
+    width: 53px;
+    background-color: #F0F3F4;
+    margin-left: 20px;
+    background: #f6f7f8;
+    background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+    background-repeat: no-repeat;
+    background-size: 800px 265px; 
+    display: inline-block;
+    position: relative; 
+    
+
+    animation-duration: 0.9s;
+    animation-fill-mode: forwards; 
+    animation-iteration-count: infinite;
+    animation-name: placeholderShimmer;
+    animation-timing-function: linear;
+}
+
 .tweet-divider {
     margin: 0;
     border-bottom: none;
@@ -468,17 +616,37 @@
     border-top: 1px #3A444C solid;
 }
 
+.sidebar-column-left {
+    display: flex;
+    width: 290px;
+}
+
+.sidebar-column-right {
+    display: flex;
+    flex-direction: column;
+    margin: 0 24px;
+    row-gap: 10px;
+    position: sticky;
+    top: 40px;
+    height: fit-content;
+}
+
+.toggle-wrapper-outer {
+    display: flex;
+    position: relative;
+}
+
 .toggle-wrapper {
     display: flex;
     flex-direction: row;
     align-items: center;
     width: 80px;
     height: 36px;
-    background-color: #e5e8e9;
-    position: absolute;
+    background-color: #F0F3F4;
+    position: relative;
     border-radius: 30px;
-    top: 40px;
-    right: 510px;
+    /* top: 40px;
+    right: 510px; */
     padding: 0;
     margin: 0;
     border: 0;
@@ -491,7 +659,7 @@
 }
 
 #toggle-wrapper-dark {
-    background-color: #1E2731;
+    background-color: #273340;
 }
 
 .toggle-circle {
@@ -513,4 +681,96 @@
     right: 0px;
     transition: cubic-bezier(0.075, 0.82, 0.165, 1);
     transition-duration: 1s;
+}
+
+.search-bar-wrapper {
+}
+
+.search-bar-outer {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.search-icon {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    left: 20px;
+    fill: #536371;
+}
+
+#search-icon-dark {
+    fill: #8A98A5;
+}
+
+.search-bar {
+    width: 292px;
+    height: 45px;
+    border-radius: 22px;
+    border: 1px solid transparent;
+    background-color: #F0F3F4;
+    padding-left: 58px;
+    font-family: TwitterChirp;
+    font-size: 16px;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
+}
+
+#search-bar-dark {
+    background-color: #273340;
+    caret-color: #FFFFFF;
+    color: #FFFFFF;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
+}
+
+#search-bar-dark::placeholder {
+    color: #8A98A5;
+}
+
+.search-bar::placeholder {
+    color: #536371;
+}
+
+.search-bar:focus {
+    background-color: #FFFFFF;
+    border: 1px solid #1B9BEF;
+    outline: none;
+}
+
+.search-bar:focus ~ .search-icon {
+    fill: #1B9BEF;
+}
+
+#search-bar-dark:focus ~ .search-icon{
+    fill: #1B9BEF;
+}
+
+#search-bar-dark:focus {
+    background-color: #15202B;
+}
+
+.error-wrapper {
+    min-height: 150px;
+    padding: 0 20px;
+    margin: 20px 0;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-message {
+    font-family: TwitterChirp;
+    font-weight: 400;
+    font-size: 15px;
+    margin: 0;
+    line-height: 20px;
+    color: #536471;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
+    white-space: pre-line;
 }

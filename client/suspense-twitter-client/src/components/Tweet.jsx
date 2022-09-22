@@ -70,37 +70,37 @@ export default function Tweet( { text,
     } else {}
 
     // media
-    const isMediaEmpty = mediaArray.length === 0;
-    const hasMediaUrl = mediaArray[0]?.url !== undefined ? true : false;
-    const hasPreviewMediaUrl = mediaArray[0]?.preview_image_url !== undefined ? true : false;
-    const isMediaTypePhoto = mediaArray[0]?.type === "photo";
+    const isMediaEmpty = mediaArray?.length === 0;
+    const hasMediaUrl = mediaArray?.[0]?.url !== undefined ? true : false;
+    const hasPreviewMediaUrl = mediaArray?.[0]?.preview_image_url !== undefined ? true : false;
+    const isMediaTypePhoto = mediaArray?.[0]?.type === "photo";
 
     let photoLayout;
     switch (mediaArray?.length) {
         case 1:
-            photoLayout = <img src={hasMediaUrl && mediaArray[0]?.url} alt="" className="tweet-body-media" />
+            photoLayout = <img src={hasMediaUrl && mediaArray?.[0]?.url || undefined} alt="" className="tweet-body-media" />
             break;
         case 2:
             photoLayout = <div className="tweet-body-media-two-column-layout">
                               <div className="tweet-body-media-half-wrapper">
-                                  <img src={hasMediaUrl && mediaArray[0]?.url} alt="" className="tweet-body-media-half" />
+                                  <img src={hasMediaUrl && mediaArray?.[0]?.url || undefined} alt="" className="tweet-body-media-half" />
                               </div>
                               <div className="tweet-body-media-half-wrapper">
-                                  <img src={hasMediaUrl && mediaArray[1]?.url} alt="" className="tweet-body-media-half" />
+                                  <img src={hasMediaUrl && mediaArray?.[1]?.url || undefined} alt="" className="tweet-body-media-half" />
                               </div>
                           </div>;
             break;
         case 3:
             photoLayout = <div className="tweet-body-media-two-column-layout">
                               <div className="tweet-body-media-half-wrapper">
-                                  <img src={hasMediaUrl && mediaArray[0]?.url} alt="" className="tweet-body-media-half" />
+                                  <img src={hasMediaUrl && mediaArray?.[0]?.url || undefined} alt="" className="tweet-body-media-half" />
                               </div>
                               <div className="tweet-body-media-two-quarters-photo-layout">
                                   <div className="tweet-body-media-quarter-wrapper">
-                                      <img src={hasMediaUrl && mediaArray[1]?.url} alt="" className="tweet-body-media-quarter" />   
+                                      <img src={hasMediaUrl && mediaArray?.[1]?.url || undefined} alt="" className="tweet-body-media-quarter" />   
                                   </div>
                                   <div className="tweet-body-media-quarter-wrapper">
-                                      <img src={hasMediaUrl && mediaArray[2]?.url} alt="" className="tweet-body-media-quarter" />   
+                                      <img src={hasMediaUrl && mediaArray?.[2]?.url || undefined} alt="" className="tweet-body-media-quarter" />   
                                   </div>
                               </div>
                           </div>;
@@ -109,18 +109,18 @@ export default function Tweet( { text,
             photoLayout = <div className="tweet-body-media-two-column-layout">
                                <div className="tweet-body-media-two-quarters-photo-layout">
                                    <div className="tweet-body-media-quarter-wrapper">
-                                       <img src={hasMediaUrl && mediaArray[0]?.url} alt="" className="tweet-body-media-quarter" />   
+                                       <img src={hasMediaUrl && mediaArray?.[0]?.url || undefined} alt="" className="tweet-body-media-quarter" />   
                                    </div>
                                    <div className="tweet-body-media-quarter-wrapper">
-                                       <img src={hasMediaUrl && mediaArray[1]?.url} alt="" className="tweet-body-media-quarter" />   
+                                       <img src={hasMediaUrl && mediaArray?.[1]?.url || undefined} alt="" className="tweet-body-media-quarter" />   
                                    </div>
                                 </div>
                                <div className="tweet-body-media-two-quarters-photo-layout">
                                    <div className="tweet-body-media-quarter-wrapper">
-                                       <img src={hasMediaUrl && mediaArray[2]?.url} alt="" className="tweet-body-media-quarter" />   
+                                       <img src={hasMediaUrl && mediaArray?.[2]?.url || undefined} alt="" className="tweet-body-media-quarter" />   
                                    </div>
                                    <div className="tweet-body-media-quarter-wrapper">
-                                       <img src={hasMediaUrl && mediaArray[3]?.url} alt="" className="tweet-body-media-quarter" />   
+                                       <img src={hasMediaUrl && mediaArray?.[3]?.url || undefined} alt="" className="tweet-body-media-quarter" />   
                                    </div>
                                 </div>
                            </div>;
@@ -179,8 +179,8 @@ export default function Tweet( { text,
                                           {/* determine if media type is a photo or not. if it is a photo, display the photo. if it is not a photo, display the preview image with an overlay of warning text.*/}
                                           {isMediaTypePhoto ? photoLayout 
                                                             : <div className="tweet-body-media-warning">
-                                                                  <h5 className="tweet-body-media-warning-text">Due to the limitations of Twitter-API-v2, this {mediaArray[0]?.type} cannot be played</h5>
-                                                                  <img src={hasPreviewMediaUrl && mediaArray[0]?.preview_image_url} alt="" className="tweet-body-media" id="darkened"/>
+                                                                  <h5 className="tweet-body-media-warning-text">Due to the limitations of Twitter-API-v2, this {mediaArray?.[0]?.type} cannot be played</h5>
+                                                                  <img src={hasPreviewMediaUrl && mediaArray?.[0]?.preview_image_url || undefined} alt="" className="tweet-body-media" id="darkened"/>
                                                               </div>
                                           }
                                       </div>
