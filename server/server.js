@@ -41,7 +41,11 @@ fetchingTweets(usernameQuery);
 
 async function fetchingTweets(usernameQuery) {
     // identify a user to pull data from (me)
-    const user = await roClient.v2.usersByUsernames(usernameQuery);
+    const user = await roClient.v2.usersByUsernames(usernameQuery, {
+        "user.fields" : ["protected"]
+    });
+
+    // user could not be found - api returns an error property
     if (user?.hasOwnProperty("errors")) {
         console.log(`Could not find user ${usernameQuery}`);
         console.error(`Could not find user ${usernameQuery}`);
@@ -50,14 +54,26 @@ async function fetchingTweets(usernameQuery) {
                 message: `Could not find user ${usernameQuery}, please try searching again`
             });
         });
-    } else {
+    } 
+    // user is protected - api returns a 'true' protected property
+    else if (user?.data[0]?.protected) {
+        console.log(`${usernameQuery}'s tweets are protected`);
+        console.error(`${usernameQuery}'s tweets are protected`);
+        app.get(`/tweets/${usernameQuery}`, (req, res) => {
+            res.status(500).json({
+                message: `${usernameQuery}'s tweets are protected`
+            });
+        });
+    } 
+    // response is ok, user has proper data
+    else {
         console.log(user);
         const myTwitterId = user?.data[0]?.id;
         // console.log(myTwitterId);
 
         // GET user information. Returns Profile Image, Username, Display Name, and ID
         const myUserProfileData = await roClient.v2.users(myTwitterId, {
-            "user.fields": ["profile_image_url", "verified"],
+            "user.fields": ["profile_image_url", "verified", "protected"],
         });
         // console.log(myUserProfileData);
 
@@ -91,7 +107,7 @@ async function fetchingTweets(usernameQuery) {
                 ],
                 "tweet.fields": ["public_metrics", "created_at"],
                 "media.fields": ["url", "preview_image_url"],
-                "user.fields": ["profile_image_url", "verified", "url"],
+                "user.fields": ["profile_image_url", "verified", "url", "protected"],
             });
             // console.log(lookupById);
             // console.log(lookupById?.includes?.users);
