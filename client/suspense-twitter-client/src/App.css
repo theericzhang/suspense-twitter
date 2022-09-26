@@ -716,6 +716,9 @@
     font-size: 16px;
     transition: cubic-bezier(0.075, 0.82, 0.165, 1);
     transition-duration: 1s;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-right: 0;
 }
 
 #search-bar-dark {
@@ -839,6 +842,7 @@
 
     .toggle-wrapper {
         height: 32px;
+        /* height: 38px; */
         width: 64px;
 
     }
@@ -854,6 +858,7 @@
     .search-bar {
         /* width: 250px; */
         width: 228px;
+        /* width: 222px; */
         height: 28px;
         font-size: 16px;
         border-radius: 30px;
