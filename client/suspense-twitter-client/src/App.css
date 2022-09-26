@@ -793,6 +793,11 @@
     .wrapper {
         width: 390px;
         border-radius: 0;
+        border: none;
+    }
+
+    #dark-wrapper {
+        border: none;
     }
 
     .tweet-wrapper {
@@ -849,5 +854,21 @@
         height: 28px;
         font-size: 16px;
         border-radius: 30px;
+    }
+
+    .meta-info-shimmer {
+        width: 200px;
+    }
+
+    .body-text-shimmer-full {
+        width: 300px;
+    }
+    
+    .body-text-shimmer-fraction {
+        width: 150px;
+    }
+
+    .body-media-wrapper-shimmer {
+        width: 300px;
     }
 }

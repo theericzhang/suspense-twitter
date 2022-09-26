@@ -43,7 +43,7 @@ export default function SearchBar( { colorScheme,
                         console.log("Supposed to fetch here");
                         fetchTweetData(inputText);
                         setInputText('');
-                    }, 2000)
+                    }, 200000)
                 }
             });
         } 
