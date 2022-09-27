@@ -125,7 +125,7 @@ function App() {
                                 <AppFrame />
                             </IsTweetLoadingContext.Provider>
                     </TweetComponentArrayContext.Provider>
-                    <div className="sidebar-column-right">
+                    <div className="sidebar-column-right" id={colorScheme === 'light' ? '' : 'sidebar-column-right-dark-mobile'}>
                         <Toggle colorScheme={colorScheme} 
                                 setColorScheme={setColorScheme}
                                 />

@@ -667,7 +667,7 @@
     justify-content: center;
     align-items: center;
     background-color: rgb(70, 170, 237);
-    margin: 5px;
+    margin: 0 5px;
     width: 26px;
     height: 26px;
     border-radius: 50%;
@@ -716,6 +716,9 @@
     font-size: 16px;
     transition: cubic-bezier(0.075, 0.82, 0.165, 1);
     transition-duration: 1s;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-right: 0;
 }
 
 #search-bar-dark {
@@ -773,4 +776,107 @@
     transition: cubic-bezier(0.075, 0.82, 0.165, 1);
     transition-duration: 1s;
     white-space: pre-line;
+}
+
+@media only screen and (max-width: 1000px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    .App {
+        flex-direction: column-reverse;
+        align-items: center;
+        padding: 0;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+        justify-content: flex-end;
+    }
+    
+    .sidebar-column-left {
+        display: none;
+    }
+    
+    .wrapper {
+        width: 390px;
+        border-radius: 0;
+        border: none;
+    }
+
+    #dark-wrapper {
+        border: none;
+    }
+
+    .tweet-wrapper {
+        padding: 11px 16px;
+    }
+
+    .sidebar-column-right {
+        width: 390px;
+        margin: 0;
+        top: 0;
+        flex-direction: row-reverse;
+        padding: 8px 0;
+        /* column-gap: 10px; */
+        justify-content: space-between;
+        background-color: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(3px);
+        transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+        transition-duration: 1s;
+    }
+
+    #sidebar-column-right-dark-mobile {
+        background-color: rgba(21, 32, 43, 0.9);
+    }
+
+    .tweet-body {
+        width: 300px;
+    }
+
+    .tweet-actions {
+        column-gap: 17px;
+    }
+
+    .toggle-wrapper-outer {
+        margin-right: 15px;
+    }
+
+    .toggle-wrapper {
+        height: 32px;
+        /* height: 38px; */
+        width: 64px;
+
+    }
+
+    .toggle-circle {
+        right: 28px;
+    }
+
+    .search-bar-wrapper {
+        margin-left: 15px;
+    }
+
+    .search-bar {
+        /* width: 250px; */
+        width: 228px;
+        /* width: 222px; */
+        height: 28px;
+        font-size: 16px;
+        border-radius: 30px;
+    }
+
+    .meta-info-shimmer {
+        width: 200px;
+    }
+
+    .body-text-shimmer-full {
+        width: 300px;
+    }
+    
+    .body-text-shimmer-fraction {
+        width: 150px;
+    }
+
+    .body-media-wrapper-shimmer {
+        width: 300px;
+    }
 }
