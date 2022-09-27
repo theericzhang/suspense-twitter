@@ -84,7 +84,7 @@ function App() {
     const providerFunction = { fetchTweetData };
 
     useEffect(() => {
-        fetchTweetData('ennntropy');
+        fetchTweetData('neee_eeed');
         // To fetch again after data has been updated by user in search bar,
         // try passing the fetchTweetData(); function as a prop to the search bar class
         // then call the function after the post request has been made
