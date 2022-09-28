@@ -56,7 +56,7 @@ function App() {
         // user queries another user, but the message needs to be reset to make the && shortcircuit false
         setErrorMessage('');
         try {
-            const res = await fetch(`http://localhost:5000/tweets/${usernameQuery}`);
+            const res = await fetch(`api/tweets/${usernameQuery}`);
             if (!res.ok) {
                 console.log(res); // returns response with status code
                 setTweetData(null);

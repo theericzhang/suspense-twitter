@@ -28,7 +28,7 @@ export default function SearchBar( { colorScheme,
         // check for regex ^[A-Za-z0-9_]{1,15}$
         const isValidExpression = /^[A-Za-z0-9_]{1,15}$/.test(inputText);
         if (!!inputText && isValidExpression) {
-            fetch('http://localhost:5000/search', {
+            fetch('api/search', {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
