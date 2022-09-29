@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 // use cors on our express instance to allow for data fetching from client-side
 app.use(cors());
@@ -20,7 +20,7 @@ app.use(express.json());
 // using static directory
 app.use(express.static(path.join(__dirname + "/public")));
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
     res.send("Hello World!");
 });
 
@@ -33,7 +33,7 @@ const roClient = clientMain.readOnly;
 
 let usernameQuery = "neee_eeed";
 
-app.post("/search", (req, res) => {
+app.post("/api/search", (req, res) => {
     const { parcel } = req.body;
     if (!parcel) {
         res.status(400).send({ status: 'failed' })
@@ -57,7 +57,7 @@ async function fetchingTweets(usernameQuery) {
     if (user?.hasOwnProperty("errors")) {
         console.log(`Could not find user ${usernameQuery}`);
         console.error(`Could not find user ${usernameQuery}`);
-        app.get(`/tweets/${usernameQuery}`, (req, res) => {
+        app.get(`/api/tweets/${usernameQuery}`, (req, res) => {
             res.status(500).json({
                 message: `Could not find user ${usernameQuery}, please try searching again`
             });
@@ -67,7 +67,7 @@ async function fetchingTweets(usernameQuery) {
     else if (user?.data[0]?.protected) {
         console.log(`${usernameQuery}'s tweets are protected`);
         console.error(`${usernameQuery}'s tweets are protected`);
-        app.get(`/tweets/${usernameQuery}`, (req, res) => {
+        app.get(`/api/tweets/${usernameQuery}`, (req, res) => {
             res.status(500).json({
                 message: `${usernameQuery}'s tweets are protected`
             });
@@ -194,7 +194,7 @@ async function fetchingTweets(usernameQuery) {
         };
 
         if (myTimelineTweetData.length === 0) {
-            app.get(`/tweets/${usernameQuery}`, (req, res) => {
+            app.get(`/api/tweets/${usernameQuery}`, (req, res) => {
                 res.status(500).json({
                     message: `${usernameQuery} has no tweets`
                 });
@@ -209,7 +209,7 @@ async function fetchingTweets(usernameQuery) {
     }}
 
 function getUser(myTimelineTweetDataObject, usernameQuery) {
-    app.get(`/tweets/${usernameQuery}`, (_, res) => {
+    app.get(`/api/tweets/${usernameQuery}`, (_, res) => {
         res.json({ ok: true, myTimelineTweetDataObject });
     });
 }
